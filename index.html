@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Conectatec.uy — Accesorios Apple y similares. Diseño premium, buen precio. Pedí por WhatsApp." />
+  <title>Conectatec.uy — Accesorios Apple</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header" role="banner">
+  <div class="header-inner">
+    <a href="#" class="header-logo" data-page="home">Conectatec.uy</a>
+
+    <nav class="header-nav" aria-label="Navegación principal">
+      <a href="#" data-page="home">Inicio</a>
+      <a href="#" data-page="shop">Tienda</a>
+      <a href="#" data-page="home" class="header-search-btn" id="searchBtn">Buscar</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Search overlay -->
+<div class="search-overlay" id="searchOverlay" role="search">
+  <div class="search-input-wrap">
+    <input
+      type="search"
+      class="search-input"
+      id="searchInput"
+      placeholder="Buscar productos..."
+      autocomplete="off"
+    />
+    <button class="search-close" id="searchClose" aria-label="Cerrar búsqueda">Cerrar</button>
+  </div>
+</div>
+
+<!-- Mobile menu -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menú móvil">
+  <p class="mobile-menu-category">Categorías</p>
+  <div class="mobile-menu-links">
+    <a href="#" data-page="home">Inicio</a>
+    <a href="#" data-page="shop" data-filter="Auriculares">Auriculares</a>
+    <a href="#" data-page="shop" data-filter="Reloj / Smartwatch">Reloj / Smartwatch</a>
+    <a href="#" data-page="shop" data-filter="Battery Pack">Battery Pack</a>
+    <a href="#" data-page="shop" data-filter="Cargadores">Cargadores</a>
+    <a href="#" data-page="shop" data-filter="Fundas auriculares">Fundas auriculares</a>
+    <a href="#" data-page="shop" data-filter="Billetera MagSafe">Billetera MagSafe</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <a href="https://wa.me/59892275155" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="#" data-page="shop">Ver toda la tienda</a>
+  </div>
+</nav>
+
+
+<!-- ===================================
+     PÁGINA: HOME
+     =================================== -->
+<main id="page-home" class="page active">
+
+ <!-- HERO -->
+<!-- HERO -->
+<section class="hero" aria-label="Portada">
+  <div class="hero-text-side">
+    <p class="hero-eyebrow">Conectatec.uy</p>
+    <h1 class="hero-title">
+      Disfrutá el día a día<br>
+      <em>con lo que usás todos los días</em>
+    </h1>
+    <p class="hero-subtitle">
+      Accesorios seleccionados para acompañar el uso diario, con una estética cuidada y funcionamiento confiable.
+    </p>
+    <a href="#" class="hero-cta go-shop" role="button">
+      Ver colección
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-image-side">
+    <img
+      src="img/relojincio.webp"
+      alt="Accesorios tecnología premium"
+      loading="eager"
+    />
+    <div class="hero-image-badge">Conectatec.uy</div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto reveal" aria-label="Propuesta de valor">
+  <div class="manifesto-headline">
+    <span>Buen diseño</span>
+    <span class="big">y funcionalidad<br><em></em></span>
+  </div>
+
+  <!-- IMAGEN AGREGADA -->
+  <div class="manifesto-image">
+    <img src="img/auriculardeporte.webp" alt="Auriculares deportivos" loading="lazy">
+  </div>
+
+  <div class="manifesto-right">
+    <div class="manifesto-divider"></div>
+    <p class="manifesto-text">
+      Nos enfocamos en productos con buena presencia y funcionamiento claro, pensados para el uso de todos los días.
+    </p>
+
+    <p class="manifesto-text">
+      <span class="bold">
+        Atención directa por WhatsApp y coordinación rápida para que recibas tu compra sin demoras.
+      </span>
+    </p>
+
+    <div class="manifesto-divider"></div>
+
+    <p class="manifesto-detail">
+      <span class="bold">Despachos en el día</span> · 
+      <span class="bold">Atención directa</span> · 
+      <span class="bold">Uruguay</span>
+    </p>
+  </div>
+</section>
+  <!-- FEATURED PRODUCTS -->
+  <section class="featured-section" aria-label="Productos destacados">
+    <div class="section-header">
+      <h2 class="section-title">Destacados</h2>
+      <a href="#" class="section-link go-shop">Ver todo</a>
+    </div>
+    <div class="featured-grid" id="featuredGrid">
+      <!-- JS render -->
+    </div>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <section class="bestseller-section" aria-label="Más vendidos">
+    <div class="section-header">
+      <h2 class="section-title">Más vendidos</h2>
+      <a href="#" class="section-link go-shop">Ver todo</a>
+    </div>
+    <div class="bestseller-strip" id="bestsellerStrip">
+      <!-- JS render -->
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews-section reveal" aria-label="Reseñas de clientes">
+    <div class="section-header">
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="review-text">"Muy buena atención y rápida respuesta. Lo recomiendo sin dudarlo."</p>
+        <p class="review-author">— Valentina M., Montevideo</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="review-text">"Todo muy prolijo y fácil por WhatsApp. El producto llegó perfecto."</p>
+        <p class="review-author">— Martín R., Canelones</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="review-text">"Lindo producto y muy buen precio. Mejor de lo que esperaba."</p>
+        <p class="review-author">— Sofía L., Maldonado</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="review-text">"Me respondieron enseguida. Excelente atención y entrega rápida."</p>
+        <p class="review-author">— Lucas P., Montevideo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA WHATSAPP -->
+  <section class="cta-strip reveal" aria-label="Contacto por WhatsApp">
+    <p class="cta-strip-label">Asesoramiento personalizado</p>
+    <h2 class="cta-strip-title">¿Tenés dudas?<br><em>Escribinos.</em></h2>
+    <a
+      class="btn-wsp-main btn-wsp-general"
+      href="https://wa.me/59892275155"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Escribir por WhatsApp
+    </a>
+  </section>
+
+</main>
+
+
+<!-- ===================================
+     PÁGINA: SHOP
+     =================================== -->
+<main id="page-shop" class="page">
+
+  <section class="shop-section" aria-label="Tienda">
+    <div class="shop-header">
+      <h1 class="shop-title">Tienda</h1>
+      <div class="shop-controls">
+        <button class="filter-chip active" data-filter="all">Todo</button>
+        <button class="filter-chip" data-filter="Auriculares">Auriculares</button>
+        <button class="filter-chip" data-filter="Reloj / Smartwatch">Relojes</button>
+        <button class="filter-chip" data-filter="Battery Pack">Battery Pack</button>
+        <button class="filter-chip" data-filter="Cargadores">Cargadores</button>
+        <button class="filter-chip" data-filter="Fundas auriculares">Fundas</button>
+        <button class="filter-chip" data-filter="Billetera MagSafe">Billetera</button>
+        <span class="shop-count" id="shopCount">— productos</span>
+      </div>
+    </div>
+
+    <div class="shop-grid" id="shopGrid">
+      <!-- JS render -->
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ===== FOOTER ===== -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div>
+      <p class="footer-brand">Conectatec.uy</p>
+      <p class="footer-tagline">Accesorios Apple y compatibles.<br>Diseño, funcionalidad y buen precio.</p>
+    </div>
+    <div>
+      <p class="footer-nav-title">Navegación</p>
+      <div class="footer-nav-links">
+        <a href="#" data-page="home">Inicio</a>
+        <a href="#" data-page="shop">Tienda</a>
+        <a href="https://wa.me/59894990760" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-nav-title">Categorías</p>
+      <div class="footer-nav-links">
+        <a href="#" data-page="shop">Auriculares</a>
+        <a href="#" data-page="shop">Relojes</a>
+        <a href="#" data-page="shop">Cargadores</a>
+        <a href="#" data-page="shop">Billetera MagSafe</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Conectatec.uy — Uruguay</p>
+    <p class="footer-copy">Medios de pago: Efectivo · Transferencia</p>
+  </div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a
+  class="wsp-float btn-wsp-general"
+  href="https://wa.me/59894990760"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Escribir por WhatsApp"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="products.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
