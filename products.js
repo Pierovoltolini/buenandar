@@ -5,68 +5,474 @@
 
 const products = [
   {
-    id: 1,
-    name: "Adidas Adizero EVO SL",
-    brand: "Adidas",
-    price: 4400,
-    images: [
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80",
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80",
-      "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800&q=80"
-    ],
-    sizes: ["39", "40", "41", "42", "43", "44"],
-    description: "La Adizero EVO SL combina tecnología Lightstrike Pro con una suela de carbono para máxima propulsión. Ideal para corredores exigentes que buscan velocidad y ligereza.",
-    features: ["Suela de carbono", "Lightstrike Pro", "Peso ultraliviano 185g", "Upper de malla transpirable"],
-    stockType: "Stock disponible",
-    badge: "Más vendido"
-  },
-  {
-    id: 2,
-    name: "Nike Vaporfly 3",
-    brand: "Nike",
-    price: 5200,
-    images: [
-      "https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=800&q=80",
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80",
-      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&q=80"
-    ],
-    sizes: ["40", "41", "42", "43"],
-    description: "La zapatilla de competición más premiada de la historia. Con ZoomX y placa de carbono ZoomX Flyplate, te da el retorno de energía que necesitás para superar tus marcas.",
-    features: ["Placa de carbono ZoomX Flyplate", "Espuma ZoomX", "Upper Vaporweave", "Drop 8mm"],
-    stockType: "Por encargue",
-    badge: "Exclusivo"
-  },
-  {
-    id: 3,
-    name: "New Balance FuelCell SC Elite v3",
-    brand: "New Balance",
-    price: 4900,
-    images: [
-      "https://images.unsplash.com/photo-1539185441755-769473a23570?w=800&q=80",
-      "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800&q=80",
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
-    ],
-    sizes: ["40", "41", "42", "43", "44", "45"],
-    description: "Triple placa de carbono y espuma FuelCell para la máxima propulsión. Diseñada para romper récords, la SC Elite v3 es la apuesta más seria de New Balance en competición.",
-    features: ["Triple placa de carbono", "FuelCell foam", "Upper de malla", "Peso 198g"],
-    stockType: "Stock disponible",
-    badge: null
-  },
-  {
-    id: 4,
-    name: "Asics MetaSpeed Sky+",
-    brand: "oN Cloud",
-    price: 5500,
-    images: [
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80",
-      "https://images.unsplash.com/photo-1539185441755-769473a23570?w=800&q=80",
-      "https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=800&q=80"
-    ],
-    sizes: ["41", "42", "43", "44"],
-    description: "Para corredores de zancada amplia. La MetaSpeed Sky+ incorpora FF Blast Turbo y placa de carbono en un diseño aerodinámico pensado para maratones y competiciones de fondo.",
-    features: ["FF Blast Turbo", "Placa de carbono", "Diseño aerodinámico", "Drop 9mm"],
-    stockType: "Por encargue",
-    badge: "Alta gama"
-  },
+  id: 7,
+  name: "Adidas Adizero SL",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasslblancasdorada1.webp",
+    "img/adidasslblancasdorada2.webp",
+    "img/adizerosldorada3.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 90,
+  name: "Adidas Adizero Adios Pro 4 ",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasadiorblancasnegras1.webp",
+    "img/adidasadiorblancasnegras3.webp"
+    
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 8,
+  name: "Adidas Adizero Adios Pro 4",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasapro4amarilla1.webp",
+    "img/adizeropro4amarilla2.webp",
+    "img/adidaspro4amarillas3.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 9,
+  name: "Adidas Adizero SL",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasslblancasplateadas1.webp",
+    "img/adidasslblancasplateadas2.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 10,
+  name: "Adidas Adizero Adios Pro 4",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasadiornegrasgris0.webp",
+    "img/adidasadiornegrasgris1.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 99,
+  name: "Adidas Adizero Adios Pro 4",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasadiorgrisrojas1.webp",
+    "img/adidasadiorgrisrojas2.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 11,
+  name: "Adidas Adizero SL",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasslblancasrosadas1.webp",
+    "img/adidasslblancasrosadas2.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 12,
+  name: "Adidas Adizero Adios Pro 4",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adizeroadiorblancanegras1.webp",
+    "img/adizeroadiorblancanegras2.webp",
+    "img/adidasadiorblancasnegras3.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 13,
+  name: "Adidas Adizero SL",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasslblancasnegras1.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 14,
+  name: "Adidas Adizero Adios Pro 4",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasadiorblancasrojas1.webp",
+    "img/adidasadiorblancasrojas2.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 15,
+  name: "Adidas Adizero SL",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasslnegrasblancas1.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 16,
+  name: "Adidas Adizero Adios Pro 4",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasadiorrojas1.webp",
+    "img/adidasadiorrojas2.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 17,
+  name: "Adidas Adizero SL",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasslblancasrojas1.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 18,
+  name: "Adidas Adizero Adios Pro 4",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasadiorblancasrosadas1.webp",
+    "img/adidasadiorblancasrosadas3.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 19,
+  name: "Adidas Adizero SL",
+  brand: "Adidas",
+  price: 0,
+  images: [
+    "img/adidasslcelesteamarilla1.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla deportiva Adidas de alta gama.",
+  features: ["Alta gama","Running","Cómoda"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+ {
+  id: 2,
+  name: "Nike Alphafly",
+  brand: "Nike",
+  price: 5200,
+  images: [
+    "img/alpharoja1.webp",
+    "img/alpharoja2.webp"
+  ],
+  sizes: ["40", "41", "42", "43"],
+  description: "Zapatilla de competición con diseño liviano, espuma de alto retorno y placa pensada para máxima velocidad en carrera.",
+  features: ["Espuma ZoomX", "Placa de carbono", "Diseño de competición", "Alta respuesta"],
+  stockType: "Por encargue",
+  badge: "Exclusivo"
+},
+{
+  id: 3,
+  name: "Nike Alphafly Amarilla",
+  brand: "Nike",
+  price: 5200,
+  images: [
+    "img/alphaamarilla1.webp",
+    "img/alphaamarillas2.webp"
+  ],
+  sizes: ["40", "41", "42", "43"],
+  description: "Modelo de alto rendimiento con estética llamativa y tecnología pensada para correr con máxima respuesta.",
+  features: ["Espuma ZoomX", "Placa de carbono", "Diseño liviano", "Alta amortiguación"],
+  stockType: "Por encargue",
+  badge: "Exclusivo"
+},
+{
+  id: 4,
+  name: "Nike Alphafly Azul",
+  brand: "Nike",
+  price: 5200,
+  images: [
+    "img/alphaazul1.webp",
+    "img/alphaazul2.webp"
+  ],
+  sizes: ["40", "41", "42", "43"],
+  description: "Zapatilla deportiva de competición con gran amortiguación, respuesta y diseño aerodinámico.",
+  features: ["Espuma ZoomX", "Placa de carbono", "Upper liviano", "Diseño competitivo"],
+  stockType: "Por encargue",
+  badge: "Exclusivo"
+},
+{
+  id: 5,
+  name: "Nike Alphafly Blanca",
+  brand: "Nike",
+  price: 5200,
+  images: [
+    "img/alphablancas1.webp",
+    "img/alphablanas2.webp"
+  ],
+  sizes: ["40", "41", "42", "43"],
+  description: "Versión blanca de alto rendimiento, ideal para quienes buscan una zapatilla deportiva premium y limpia visualmente.",
+  features: ["Espuma ZoomX", "Placa de carbono", "Diseño liviano", "Gran retorno de energía"],
+  stockType: "Por encargue",
+  badge: "Exclusivo"
+},
+{
+  id: 6,
+  name: "Nike Alphafly Blanca Azul",
+  brand: "Nike",
+  price: 5200,
+  images: [
+    "img/alphablancaazul1.webp"
+  ],
+  sizes: ["40", "41", "42", "43"],
+  description: "Modelo deportivo blanco con detalles azules, pensado para rendimiento y presencia visual.",
+  features: ["Espuma ZoomX", "Placa de carbono", "Diseño liviano", "Alta amortiguación"],
+  stockType: "Por encargue",
+  badge: "Exclusivo"
+},
+{
+  id: 7,
+  name: "Nike Alphafly Negra",
+  brand: "Nike",
+  price: 5200,
+  images: [
+    "img/alphanegra1.webp",
+    "img/alphanegra2.webp"
+  ],
+  sizes: ["40", "41", "42", "43"],
+  description: "Modelo negro de competición con estética agresiva, liviana y deportiva.",
+  features: ["Espuma ZoomX", "Placa de carbono", "Diseño liviano", "Alta respuesta"],
+  stockType: "Por encargue",
+  badge: "Exclusivo"
+},
+{
+  id: 26,
+  name: "New Balance ",
+  brand: "New Balance",
+  price: 0,
+  images: [
+    "img/newmarron.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
+  features: ["Alta gama","Running","Cómoda","Uso diario"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+ {
+  id: 22,
+  name: "New Balance FuelCell",
+  brand: "New Balance",
+  price: 0,
+  images: [
+    "img/newrosa1.webp",
+    "img/newrosa2.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
+  features: ["Alta gama","Running","Cómoda","Uso diario"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 23,
+  name: "New Balance FuelCell",
+  brand: "New Balance",
+  price: 0,
+  images: [
+    "img/newazul1.webp",
+    "img/newazul2.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
+  features: ["Alta gama","Running","Cómoda","Uso diario"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 24,
+  name: "New Balance FuelCell",
+  brand: "New Balance",
+  price: 0,
+  images: [
+    "img/newnaranjaamarilla.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
+  features: ["Alta gama","Running","Cómoda","Uso diario"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 25,
+  name: "New Balance ",
+  brand: "New Balance",
+  price: 0,
+  images: [
+    "img/newblanca.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
+  features: ["Alta gama","Running","Cómoda","Uso diario"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
   
+  {
+  id: 30,
+  name: "On Cloud",
+  brand: "oN Cloud",
+  price: 0,
+  images: [
+    "img/oncloudbyg.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
+  features: ["Ultra cómoda","Tecnología CloudTec","Uso diario","Alta gama"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 31,
+  name: "On Cloud",
+  brand: "oN Cloud",
+  price: 0,
+  images: [
+    "img/onrosa.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
+  features: ["Ultra cómoda","Tecnología CloudTec","Uso diario","Alta gama"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 32,
+  name: "On Cloud",
+  brand: "oN Cloud",
+  price: 0,
+  images: [
+    "img/ontotalwhite.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
+  features: ["Ultra cómoda","Tecnología CloudTec","Uso diario","Alta gama"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 33,
+  name: "On Cloud",
+  brand: "oN Cloud",
+  price: 0,
+  images: [
+    "img/onnyv1.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
+  features: ["Ultra cómoda","Tecnología CloudTec","Uso diario","Alta gama"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 34,
+  name: "On Cloud",
+  brand: "oN Cloud",
+  price: 0,
+  images: [
+    "img/onnyb1.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
+  features: ["Ultra cómoda","Tecnología CloudTec","Uso diario","Alta gama"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+},
+{
+  id: 35,
+  name: "On Cloud",
+  brand: "oN Cloud",
+  price: 0,
+  images: [
+    "img/ontotalblack.webp"
+  ],
+  sizes: ["38","39","40","41","42","43","44","45"],
+  description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
+  features: ["Ultra cómoda","Tecnología CloudTec","Uso diario","Alta gama"],
+  stockType: "Por encargue",
+  badge: "Nuevo"
+}
 ];
