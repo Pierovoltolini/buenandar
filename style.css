@@ -1607,3 +1607,78 @@ ul { list-style: none; }
     font-size: 0.78rem !important;
   }
 }
+.consult-card {
+  background: linear-gradient(135deg, #c8f000, #a6e600);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none !important;
+  box-shadow: 0 10px 25px rgba(200, 240, 0, 0.35);
+  transition: all 0.3s ease;
+}
+
+.consult-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(200, 240, 0, 0.5);
+}
+
+.consult-card-inner {
+  padding: 22px;
+  text-align: center;
+}
+
+.consult-card-inner h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.consult-card-inner p {
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+.consult-card-inner a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+}
+
+.consult-card-inner a:hover {
+  background: #111;
+  transform: scale(1.05);
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+  .consult-card-inner {
+    padding: 16px;
+  }
+
+  .consult-card-inner h3 {
+    font-size: 0.95rem;
+  }
+
+  .consult-card-inner p {
+    font-size: 0.7rem;
+  }
+
+  .consult-card-inner a {
+    font-size: 0.6rem;
+    padding: 10px 14px;
+  }
+}
