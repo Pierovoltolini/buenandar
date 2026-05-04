@@ -42,13 +42,13 @@ function getTotal() {
     
     {
       type: "image",
-      src: "img/banner1.png",
+      src: "banner1.png",
       headline: "Calidad Alta gama\npara cada paso",
       sub: "Las mejores marcas deportivas, en Uruguay"
     },
     {
       type: "image",
-      src: "img/banner2.png",
+      src: "banner2.png",
       headline: "Movete bien\nal mejor precio",
       sub: "Modelos exclusivos · Stock y encargue · Envíos a todo el país"
     },
@@ -57,7 +57,7 @@ function getTotal() {
     
     {
       type: "image",
-      src: "img/hero3.png",
+      src: "hero3.png",
       headline: "Stock\ny encargue",
       sub: "Encontrá el modelo que buscás · Consulta por WhatsApp, compras 100% seguras"
     }
