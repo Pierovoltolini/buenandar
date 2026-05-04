@@ -39,23 +39,27 @@ function getTotal() {
 (function initCarousel() {
   // Slides: editá esta lista para cambiar imágenes/videos
   const slides = [
+    
     {
       type: "image",
-      src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600&q=85",
-      headline: "Movete bien\nal mejor precio",
-      sub: "Modelos exclusivos · Stock y encargue · Envíos a todo el país"
-    },
-    {
-      type: "image",
-      src: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=1600&q=85",
-      headline: "Alta gama\npara cada paso",
+      src: "img/banner1.png",
+      headline: "Calidad Alta gama\npara cada paso",
       sub: "Las mejores marcas deportivas, en Uruguay"
     },
     {
       type: "image",
-      src: "https://images.unsplash.com/photo-1556906781-9a412961a28c?w=1600&q=85",
+      src: "img/banner2.png",
+      headline: "Movete bien\nal mejor precio",
+      sub: "Modelos exclusivos · Stock y encargue · Envíos a todo el país"
+    },
+    
+   
+    
+    {
+      type: "image",
+      src: "img/hero3.png",
       headline: "Stock\ny encargue",
-      sub: "Encontrá el modelo que buscás · Consulta por WhatsApp"
+      sub: "Encontrá el modelo que buscás · Consulta por WhatsApp, compras 100% seguras"
     }
     // Para agregar un video:
     // { type: "video", src: "video/banner.mp4", headline: "...", sub: "..." }
