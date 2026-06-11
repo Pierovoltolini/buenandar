@@ -7,7 +7,7 @@ const products = [
     id: 1,
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "",
+    price: "4490",
     images: [
       "img/adidasslblancasdorada1.webp",
       "img/adidasslblancasdorada2.webp",
@@ -23,7 +23,7 @@ const products = [
     id: 2,
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "",
+    price: "4790",
     images: [
       "img/adidasadiorblancasnegras1.webp",
       "img/adidasadiorblancasnegras3.webp"
@@ -38,7 +38,7 @@ const products = [
     id: 3,
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "",
+    price: "4790",
     images: [
       "img/adidasapro4amarilla1.webp",
       "img/adizeropro4amarilla2.webp",
@@ -54,7 +54,7 @@ const products = [
     id: 4,
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "",
+    price: "4490",
     images: [
       "img/adidasslblancasplateadas1.webp",
       "img/adidasslblancasplateadas2.webp"
@@ -69,7 +69,7 @@ const products = [
     id: 5,
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "",
+    price: "4790",
     images: [
       "img/adidasadiornegrasgris0.webp",
       "img/adidasadiornegrasgris1.webp"
@@ -84,7 +84,7 @@ const products = [
     id: 6,
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "",
+    price: "4790",
     images: [
       "img/adidasadiorgrisrojas1.webp",
       "img/adidasadiorgrisrojas2.webp"
@@ -99,7 +99,7 @@ const products = [
     id: 7,
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "",
+    price: "4490",
     images: [
       "img/adidasslblancasrosadas1.webp",
       "img/adidasslblancasrosadas2.webp"
@@ -114,7 +114,7 @@ const products = [
     id: 8,
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "",
+    price: "4790",
     images: [
       "img/adizeroadiorblancanegras1.webp",
       "img/adizeroadiorblancanegras2.webp",
@@ -130,7 +130,7 @@ const products = [
     id: 9,
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "",
+    price: "4490",
     images: ["img/adidasslblancasnegras1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
@@ -142,7 +142,7 @@ const products = [
     id: 10,
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "",
+    price: "4790",
     images: [
       "img/adidasadiorblancasrojas1.webp",
       "img/adidasadiorblancasrojas2.webp"
@@ -157,7 +157,7 @@ const products = [
     id: 11,
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "",
+    price: "4490",
     images: ["img/adidasslnegrasblancas1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
@@ -169,7 +169,7 @@ const products = [
     id: 12,
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "",
+    price: "4790",
     images: [
       "img/adidasadiorrojas1.webp",
       "img/adidasadiorrojas2.webp"
@@ -184,7 +184,7 @@ const products = [
     id: 13,
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "",
+    price: "4490",
     images: ["img/adidasslblancasrojas1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
@@ -196,7 +196,7 @@ const products = [
     id: 14,
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "",
+    price: "4790",
     images: [
       "img/adidasadiorblancasrosadas1.webp",
       "img/adidasadiorblancasrosadas3.webp"
@@ -211,7 +211,7 @@ const products = [
     id: 15,
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "",
+    price: "4490",
     images: ["img/adidasslcelesteamarilla1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
@@ -224,7 +224,7 @@ const products = [
     id: 16,
     name: "Nike Alphafly",
     brand: "Nike",
-    price: "",
+    price: "4690",
     images: [
       "img/alpharoja1.webp",
       "img/alhparoja2.webp"
@@ -239,7 +239,7 @@ const products = [
     id: 17,
     name: "Nike Alphafly Amarilla",
     brand: "Nike",
-    price: "",
+    price: "4690",
     images: [
       "img/alphaamarilla1.webp",
       "img/alphaamarillas2.webp"
@@ -254,7 +254,7 @@ const products = [
     id: 18,
     name: "Nike Alphafly Azul",
     brand: "Nike",
-    price: "",
+    price: "4690",
     images: [
       "img/alphaazul1.webp",
       "img/alphaazul2.webp"
@@ -269,7 +269,7 @@ const products = [
     id: 19,
     name: "Nike Alphafly Blanca",
     brand: "Nike",
-    price: "",
+    price: "4690",
     images: [
       "img/alphablancas1.webp",
       "img/alphablanas2.webp"
@@ -284,7 +284,7 @@ const products = [
     id: 20,
     name: "Nike Alphafly Blanca Azul",
     brand: "Nike",
-    price: "",
+    price: "4690",
     images: ["img/alphablancaazul1.webp"],
     sizes: ["40","41","42","43"],
     description: "Modelo deportivo blanco con detalles azules, pensado para rendimiento y presencia visual.",
@@ -296,7 +296,7 @@ const products = [
     id: 21,
     name: "Nike Alphafly Negra",
     brand: "Nike",
-    price: "",
+    price: "4690",
     images: [
       "img/alphanegra1.webp",
       "img/alphanegra2.webp"
@@ -312,7 +312,7 @@ const products = [
     id: 22,
     name: "New Balance",
     brand: "New Balance",
-    price: "",
+    price: "4400",
     images: ["img/newmarron.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
@@ -324,7 +324,7 @@ const products = [
     id: 23,
     name: "New Balance FuelCell",
     brand: "New Balance",
-    price: "",
+    price: "4400",
     images: [
       "img/newrosa1.webp",
       "img/newrosa2.webp"
@@ -339,7 +339,7 @@ const products = [
     id: 24,
     name: "New Balance FuelCell",
     brand: "New Balance",
-    price: "",
+    price: "4400",
     images: [
       "img/newazul1.webp",
       "img/newazul2.webp"
@@ -354,7 +354,7 @@ const products = [
     id: 25,
     name: "New Balance FuelCell",
     brand: "New Balance",
-    price: "",
+    price: "4400",
     images: ["img/newnaranjaamarilla.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
@@ -366,7 +366,7 @@ const products = [
     id: 26,
     name: "New Balance",
     brand: "New Balance",
-    price: "",
+    price: "4400",
     images: ["img/newblanca.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
@@ -379,7 +379,7 @@ const products = [
     id: 27,
     name: "On Cloud",
     brand: "oN Cloud",
-    price: "",
+    price: "4490",
     images: ["img/oncloudbyg.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
@@ -391,7 +391,7 @@ const products = [
     id: 28,
     name: "On Cloud",
     brand: "oN Cloud",
-    price: "",
+    price: "4490",
     images: ["img/onrosa.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
@@ -403,7 +403,7 @@ const products = [
     id: 29,
     name: "On Cloud",
     brand: "oN Cloud",
-    price: "",
+    price: "4490",
     images: ["img/ontotalwhite.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
@@ -415,7 +415,7 @@ const products = [
     id: 30,
     name: "On Cloud",
     brand: "oN Cloud",
-    price: "",
+    price: "4490",
     images: ["img/onnyv1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
@@ -427,7 +427,7 @@ const products = [
     id: 31,
     name: "On Cloud",
     brand: "oN Cloud",
-    price: "",
+    price: "4490",
     images: ["img/onnyb1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
@@ -439,7 +439,7 @@ const products = [
     id: 32,
     name: "On Cloud",
     brand: "oN Cloud",
-    price: "",
+    price: "4490",
     images: ["img/ontotalblack.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",

@@ -446,7 +446,6 @@ ul { list-style: none; }
   gap: 16px;
   flex-wrap: wrap;
 }
-.products-header-left {}
 .products-header-left .section-title,
 .section-header .section-title { margin-bottom: 6px; }
 .section-header .section-sub { margin-top: 6px; }
@@ -763,6 +762,165 @@ ul { list-style: none; }
 .cart-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 0.88rem; color: var(--gray-600); }
 .cart-row.total { font-family: var(--font-display); font-size: 1.3rem; font-weight: 900; color: var(--black); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--gray-200); }
 .cart-row.discount { color: #2d7d46; font-weight: 700; }
+
+/* ── Reseñas (WhatsApp style) ───────────────────────────────── */
+#resenas {
+  padding: 80px 0;
+  background: #111b21;
+}
+
+.resenas-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.resenas-label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--lime);
+  background: rgba(200,240,0,0.12);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.resenas-title { color: var(--white); margin-bottom: 8px; }
+
+.resenas-sub {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.88rem;
+  font-weight: 300;
+}
+
+.resenas-chat {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 8px 20px;
+  scrollbar-width: none;
+}
+.resenas-chat::-webkit-scrollbar { display: none; }
+
+.review-msg {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+  width: 250px;
+  scroll-snap-align: start;
+  align-self: flex-start;
+}
+
+.review-avatar {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background: var(--av-color, #555);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.review-bubble {
+  padding: 8px 10px 6px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.review-msg.received .review-bubble {
+  background: #202c33;
+  border-top-left-radius: 2px;
+}
+
+.review-msg.sent .review-bubble {
+  background: #005c4b;
+  border-top-right-radius: 2px;
+}
+
+.review-msg.received .review-bubble::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -7px;
+  border-width: 0 8px 8px 0;
+  border-style: solid;
+  border-color: transparent #202c33 transparent transparent;
+}
+
+.review-msg.sent .review-bubble::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -7px;
+  border-width: 0 0 8px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent #005c4b;
+}
+
+.review-product-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.review-name {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--lime);
+  letter-spacing: 0.02em;
+  margin-bottom: 5px;
+}
+
+.review-text {
+  color: #e9edef;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0 0 6px;
+}
+
+.review-meta {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+}
+
+.review-time {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.38);
+}
+
+.review-ticks {
+  font-size: 0.72rem;
+  color: #53bdeb;
+  letter-spacing: -2px;
+}
+
+@media (max-width: 480px) {
+  #resenas { padding: 56px 0; }
+  .resenas-chat { gap: 12px; padding: 4px 4px 16px; }
+  .review-msg { width: 210px; }
+  .review-avatar { width: 30px; height: 30px; min-width: 30px; font-size: 0.8rem; }
+  .review-text { font-size: 0.85rem; }
+}
 
 /* ── Encargues / Stock ──────────────────────────────────────── */
 #encargues { padding: 80px 0; background: var(--black); }
