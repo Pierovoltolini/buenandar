@@ -1,13 +1,26 @@
 // ============================================================
 //  BuenAndar.uy — products.js
+//  Modelo de datos de producto:
+//  id, slug, name, brand, category, price, compareAtPrice,
+//  images, sizes, description, features, purchaseType
+//  ("stock" | "preorder"), estimatedDelivery, badge, featured, active
+//
+//  sizes acepta dos formatos:
+//   - ["38","39",...]                 → talle sin conteo de stock (encargue)
+//   - [{ size:"40", stock:3 }, ...]   → talle con stock real (venta en stock)
 // ============================================================
+
+const DEFAULT_ESTIMATED_DELIVERY = "10 a 12 días hábiles";
 
 const products = [
   {
     id: 1,
+    slug: "adidas-adizero-sl-1",
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "4490",
+    category: "running",
+    price: 4490,
+    compareAtPrice: null,
     images: [
       "img/adidasslblancasdorada1.webp",
       "img/adidasslblancasdorada2.webp",
@@ -16,14 +29,20 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 2,
+    slug: "adidas-adizero-adios-pro-4-2",
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "4790",
+    category: "running",
+    price: 4790,
+    compareAtPrice: null,
     images: [
       "img/adidasadiorblancasnegras1.webp",
       "img/adidasadiorblancasnegras3.webp"
@@ -31,14 +50,20 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 3,
+    slug: "adidas-adizero-adios-pro-4-3",
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "4790",
+    category: "running",
+    price: 4790,
+    compareAtPrice: null,
     images: [
       "img/adidasapro4amarilla1.webp",
       "img/adizeropro4amarilla2.webp",
@@ -47,14 +72,20 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 4,
+    slug: "adidas-adizero-sl-4",
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "4490",
+    category: "running",
+    price: 4490,
+    compareAtPrice: null,
     images: [
       "img/adidasslblancasplateadas1.webp",
       "img/adidasslblancasplateadas2.webp"
@@ -62,14 +93,20 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 5,
+    slug: "adidas-adizero-adios-pro-4-5",
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "4790",
+    category: "running",
+    price: 4790,
+    compareAtPrice: null,
     images: [
       "img/adidasadiornegrasgris0.webp",
       "img/adidasadiornegrasgris1.webp"
@@ -77,14 +114,20 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 6,
+    slug: "adidas-adizero-adios-pro-4-6",
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "4790",
+    category: "running",
+    price: 4790,
+    compareAtPrice: null,
     images: [
       "img/adidasadiorgrisrojas1.webp",
       "img/adidasadiorgrisrojas2.webp"
@@ -92,14 +135,20 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 7,
+    slug: "adidas-adizero-sl-7",
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "4490",
+    category: "running",
+    price: 4490,
+    compareAtPrice: null,
     images: [
       "img/adidasslblancasrosadas1.webp",
       "img/adidasslblancasrosadas2.webp"
@@ -107,14 +156,20 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 8,
+    slug: "adidas-adizero-adios-pro-4-8",
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "4790",
+    category: "running",
+    price: 4790,
+    compareAtPrice: null,
     images: [
       "img/adizeroadiorblancanegras1.webp",
       "img/adizeroadiorblancanegras2.webp",
@@ -123,26 +178,38 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 9,
+    slug: "adidas-adizero-sl-9",
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "4490",
+    category: "running",
+    price: 4490,
+    compareAtPrice: null,
     images: ["img/adidasslblancasnegras1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 10,
+    slug: "adidas-adizero-adios-pro-4-10",
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "4790",
+    category: "running",
+    price: 4790,
+    compareAtPrice: null,
     images: [
       "img/adidasadiorblancasrojas1.webp",
       "img/adidasadiorblancasrojas2.webp"
@@ -150,26 +217,38 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 11,
+    slug: "adidas-adizero-sl-11",
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "4490",
+    category: "running",
+    price: 4490,
+    compareAtPrice: null,
     images: ["img/adidasslnegrasblancas1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 12,
+    slug: "adidas-adizero-adios-pro-4-12",
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "4790",
+    category: "running",
+    price: 4790,
+    compareAtPrice: null,
     images: [
       "img/adidasadiorrojas1.webp",
       "img/adidasadiorrojas2.webp"
@@ -177,26 +256,38 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 13,
+    slug: "adidas-adizero-sl-13",
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "4490",
+    category: "running",
+    price: 4490,
+    compareAtPrice: null,
     images: ["img/adidasslblancasrojas1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 14,
+    slug: "adidas-adizero-adios-pro-4-14",
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
-    price: "4790",
+    category: "running",
+    price: 4790,
+    compareAtPrice: null,
     images: [
       "img/adidasadiorblancasrosadas1.webp",
       "img/adidasadiorblancasrosadas3.webp"
@@ -204,27 +295,39 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 15,
+    slug: "adidas-adizero-sl-15",
     name: "Adidas Adizero SL",
     brand: "Adidas",
-    price: "4490",
+    category: "running",
+    price: 4490,
+    compareAtPrice: null,
     images: ["img/adidasslcelesteamarilla1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla deportiva Adidas de alta gama.",
     features: ["Alta gama","Running","Cómoda"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
 
   {
     id: 16,
+    slug: "nike-alphafly-16",
     name: "Nike Alphafly",
     brand: "Nike",
-    price: "4690",
+    category: "running",
+    price: 4690,
+    compareAtPrice: null,
     images: [
       "img/alpharoja1.webp",
       "img/alhparoja2.webp"
@@ -232,14 +335,20 @@ const products = [
     sizes: ["40","41","42","43"],
     description: "Zapatilla de competición con diseño liviano, espuma de alto retorno y placa pensada para máxima velocidad en carrera.",
     features: ["Espuma ZoomX","Placa de carbono","Diseño de competición","Alta respuesta"],
-    stockType: "Por encargue",
-    badge: "Exclusivo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Exclusivo",
+    featured: false,
+    active: true
   },
   {
     id: 17,
+    slug: "nike-alphafly-amarilla-17",
     name: "Nike Alphafly Amarilla",
     brand: "Nike",
-    price: "4690",
+    category: "running",
+    price: 4690,
+    compareAtPrice: null,
     images: [
       "img/alphaamarilla1.webp",
       "img/alphaamarillas2.webp"
@@ -247,14 +356,20 @@ const products = [
     sizes: ["40","41","42","43"],
     description: "Modelo de alto rendimiento con estética llamativa y tecnología pensada para correr con máxima respuesta.",
     features: ["Espuma ZoomX","Placa de carbono","Diseño liviano","Alta amortiguación"],
-    stockType: "Por encargue",
-    badge: "Exclusivo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Exclusivo",
+    featured: false,
+    active: true
   },
   {
     id: 18,
+    slug: "nike-alphafly-azul-18",
     name: "Nike Alphafly Azul",
     brand: "Nike",
-    price: "4690",
+    category: "running",
+    price: 4690,
+    compareAtPrice: null,
     images: [
       "img/alphaazul1.webp",
       "img/alphaazul2.webp"
@@ -262,14 +377,20 @@ const products = [
     sizes: ["40","41","42","43"],
     description: "Zapatilla deportiva de competición con gran amortiguación, respuesta y diseño aerodinámico.",
     features: ["Espuma ZoomX","Placa de carbono","Upper liviano","Diseño competitivo"],
-    stockType: "Por encargue",
-    badge: "Exclusivo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Exclusivo",
+    featured: false,
+    active: true
   },
   {
     id: 19,
+    slug: "nike-alphafly-blanca-19",
     name: "Nike Alphafly Blanca",
     brand: "Nike",
-    price: "4690",
+    category: "running",
+    price: 4690,
+    compareAtPrice: null,
     images: [
       "img/alphablancas1.webp",
       "img/alphablanas2.webp"
@@ -277,26 +398,38 @@ const products = [
     sizes: ["40","41","42","43"],
     description: "Versión blanca de alto rendimiento, ideal para quienes buscan una zapatilla deportiva premium y limpia visualmente.",
     features: ["Espuma ZoomX","Placa de carbono","Diseño liviano","Gran retorno de energía"],
-    stockType: "Por encargue",
-    badge: "Exclusivo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Exclusivo",
+    featured: false,
+    active: true
   },
   {
     id: 20,
+    slug: "nike-alphafly-blanca-azul-20",
     name: "Nike Alphafly Blanca Azul",
     brand: "Nike",
-    price: "4690",
+    category: "running",
+    price: 4690,
+    compareAtPrice: null,
     images: ["img/alphablancaazul1.webp"],
     sizes: ["40","41","42","43"],
     description: "Modelo deportivo blanco con detalles azules, pensado para rendimiento y presencia visual.",
     features: ["Espuma ZoomX","Placa de carbono","Diseño liviano","Alta amortiguación"],
-    stockType: "Por encargue",
-    badge: "Exclusivo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Exclusivo",
+    featured: false,
+    active: true
   },
   {
     id: 21,
+    slug: "nike-alphafly-negra-21",
     name: "Nike Alphafly Negra",
     brand: "Nike",
-    price: "4690",
+    category: "running",
+    price: 4690,
+    compareAtPrice: null,
     images: [
       "img/alphanegra1.webp",
       "img/alphanegra2.webp"
@@ -304,27 +437,39 @@ const products = [
     sizes: ["40","41","42","43"],
     description: "Modelo negro de competición con estética agresiva, liviana y deportiva.",
     features: ["Espuma ZoomX","Placa de carbono","Diseño liviano","Alta respuesta"],
-    stockType: "Por encargue",
-    badge: "Exclusivo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Exclusivo",
+    featured: false,
+    active: true
   },
 
   {
     id: 22,
+    slug: "new-balance-22",
     name: "New Balance",
     brand: "New Balance",
-    price: "4400",
+    category: "running",
+    price: 4400,
+    compareAtPrice: null,
     images: ["img/newmarron.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
     features: ["Alta gama","Running","Cómoda","Uso diario"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 23,
+    slug: "new-balance-fuelcell-23",
     name: "New Balance FuelCell",
     brand: "New Balance",
-    price: "4400",
+    category: "running",
+    price: 4400,
+    compareAtPrice: null,
     images: [
       "img/newrosa1.webp",
       "img/newrosa2.webp"
@@ -332,14 +477,20 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
     features: ["Alta gama","Running","Cómoda","Uso diario"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 24,
+    slug: "new-balance-fuelcell-24",
     name: "New Balance FuelCell",
     brand: "New Balance",
-    price: "4400",
+    category: "running",
+    price: 4400,
+    compareAtPrice: null,
     images: [
       "img/newazul1.webp",
       "img/newazul2.webp"
@@ -347,104 +498,207 @@ const products = [
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
     features: ["Alta gama","Running","Cómoda","Uso diario"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 25,
+    slug: "new-balance-fuelcell-25",
     name: "New Balance FuelCell",
     brand: "New Balance",
-    price: "4400",
+    category: "running",
+    price: 4400,
+    compareAtPrice: null,
     images: ["img/newnaranjaamarilla.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
     features: ["Alta gama","Running","Cómoda","Uso diario"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 26,
+    slug: "new-balance-26",
     name: "New Balance",
     brand: "New Balance",
-    price: "4400",
+    category: "running",
+    price: 4400,
+    compareAtPrice: null,
     images: ["img/newblanca.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla New Balance de alta gama, ideal para running, caminar y uso diario.",
     features: ["Alta gama","Running","Cómoda","Uso diario"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
 
   {
     id: 27,
+    slug: "on-cloud-27",
     name: "On Cloud",
     brand: "oN Cloud",
-    price: "4490",
+    category: "diario",
+    price: 4490,
+    compareAtPrice: null,
     images: ["img/oncloudbyg.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
     features: ["Ultra cómoda","Tecnología CloudTec","Uso diario","Alta gama"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 28,
+    slug: "on-cloud-28",
     name: "On Cloud",
     brand: "oN Cloud",
-    price: "4490",
+    category: "diario",
+    price: 4490,
+    compareAtPrice: null,
     images: ["img/onrosa.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
     features: ["Ultra cómoda","Tecnología CloudTec","Uso diario","Alta gama"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 29,
+    slug: "on-cloud-29",
     name: "On Cloud",
     brand: "oN Cloud",
-    price: "4490",
+    category: "diario",
+    price: 4490,
+    compareAtPrice: null,
     images: ["img/ontotalwhite.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
     features: ["Ultra cómoda","Tecnología CloudTec","Uso diario","Alta gama"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 30,
+    slug: "on-cloud-30",
     name: "On Cloud",
     brand: "oN Cloud",
-    price: "4490",
+    category: "diario",
+    price: 4490,
+    compareAtPrice: null,
     images: ["img/onnyv1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
     features: ["Ultra cómoda","Tecnología CloudTec","Uso diario","Alta gama"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 31,
+    slug: "on-cloud-31",
     name: "On Cloud",
     brand: "oN Cloud",
-    price: "4490",
+    category: "diario",
+    price: 4490,
+    compareAtPrice: null,
     images: ["img/onnyb1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
     features: ["Ultra cómoda","Tecnología CloudTec","Uso diario","Alta gama"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
   },
   {
     id: 32,
+    slug: "on-cloud-32",
     name: "On Cloud",
     brand: "oN Cloud",
-    price: "4490",
+    category: "diario",
+    price: 4490,
+    compareAtPrice: null,
     images: ["img/ontotalblack.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
     description: "Zapatilla On Cloud de alta gama, ideal para uso diario, caminar y máxima comodidad.",
     features: ["Ultra cómoda","Tecnología CloudTec","Uso diario","Alta gama"],
-    stockType: "Por encargue",
-    badge: "Nuevo"
+    purchaseType: "preorder",
+    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    badge: "Nuevo",
+    featured: false,
+    active: true
+  },
+
+  // ── PRODUCTO DE PRUEBA — Mercado Pago ───────────────────────
+  // Solo para probar el checkout real de producción con un monto
+  // bajo. BORRÁ este bloque (o poné active:false) en cuanto
+  // termines la prueba, para que no quede visible a clientes reales.
+  {
+    id: 9999,
+    slug: "producto-de-prueba-mp",
+    name: "TEST — Producto de prueba (no comprar)",
+    brand: "BuenAndar",
+    category: "test",
+    price: 50,
+    compareAtPrice: null,
+    images: ["img/placeholder-stock.svg"],
+    sizes: [{ size: "ÚNICO", stock: 99 }],
+    description: "Producto de prueba para verificar el checkout de Mercado Pago en producción. No es un producto real.",
+    features: ["Prueba de pago"],
+    purchaseType: "stock",
+    estimatedDelivery: null,
+    badge: "Prueba",
+    featured: false,
+    active: true
+  },
+
+  // ── PLANTILLA "EN STOCK" ────────────────────────────────────
+  // Producto de ejemplo para la nueva sección "Entrega inmediata".
+  // Queda desactivado (active:false) hasta que subas fotos reales.
+  // Para activarlo: cambiá "active" a true, poné tus imágenes en
+  // vez de la imagen placeholder, y ajustá el stock por talle.
+  {
+    id: 1001,
+    slug: "plantilla-en-stock",
+    name: "Modelo en stock (editar nombre)",
+    brand: "BuenAndar",
+    category: "running",
+    price: 0,
+    compareAtPrice: null,
+    images: ["img/placeholder-stock.svg"],
+    sizes: [
+      { size: "39", stock: 2 },
+      { size: "40", stock: 3 },
+      { size: "41", stock: 0 },
+      { size: "42", stock: 1 }
+    ],
+    description: "Editá esta descripción cuando actives el producto en stock.",
+    features: ["Entrega inmediata"],
+    purchaseType: "stock",
+    estimatedDelivery: null,
+    badge: "En stock",
+    featured: false,
+    active: false
   }
 ];

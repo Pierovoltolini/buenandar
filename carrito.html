@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tu carrito | BuenAndar.uy</title>
+  <meta name="description" content="Revisá tu carrito de compras en BuenAndar.uy y finalizá tu compra de forma segura.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#c8f000">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Meta Pixel: pegá acá el script base cuando tengas tu Pixel ID (ver index.html). -->
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════════════════════════ -->
+  <header id="header">
+    <div class="container">
+      <div class="header-inner">
+
+        <a href="index.html" class="logo">
+          BuenAndar<span>.uy</span>
+        </a>
+
+        <nav class="nav">
+          <a href="index.html#products">Productos</a>
+          <a href="index.html#encargues">Stock y Encargue</a>
+          <a href="index.html#instagram">Instagram</a>
+          <a href="index.html#contacto">Contacto</a>
+        </nav>
+
+        <div class="header-actions">
+          <a href="#carrito-section" class="cart-btn" aria-label="Ir al carrito">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+
+          <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html#products">Productos</a>
+    <a href="index.html#encargues">Stock y Encargue</a>
+    <a href="index.html#instagram">Instagram</a>
+    <a href="index.html#contacto">Contacto</a>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       CARRITO — página completa
+  ══════════════════════════════════════════════════════════ -->
+  <section id="carrito-section">
+    <div class="container">
+
+      <div class="cart-page-header">
+        <h1 class="section-title">Tu<br>carrito</h1>
+        <a href="index.html#products" class="cart-page-continue">← Seguir comprando</a>
+      </div>
+
+      <div class="cart-page-layout">
+
+        <div class="cart-page-items">
+          <div class="cart-mixed-banner" id="pageCartMixedBanner">
+            Tu carrito contiene productos en stock y productos por encargue. El pedido podrá enviarse cuando todos los productos estén disponibles.
+          </div>
+          <div class="cart-items cart-items-page" id="pageCartItems"></div>
+        </div>
+
+        <aside class="cart-page-summary">
+          <h2 class="cart-summary-title">Resumen de compra</h2>
+
+          <div class="cart-discount-banner" id="pageCartDiscountBanner"></div>
+
+          <div class="cart-totals">
+            <div class="cart-row">
+              <span>Subtotal</span>
+              <span id="pageCartSubtotal">$0</span>
+            </div>
+            <div class="cart-row discount">
+              <span>Descuento</span>
+              <span id="pageCartDiscount">$0</span>
+            </div>
+            <div class="cart-row cart-row-shipping">
+              <span>Envío</span>
+              <span>A coordinar</span>
+            </div>
+            <div class="cart-row total">
+              <span>Total</span>
+              <span id="pageCartTotal">$0</span>
+            </div>
+          </div>
+
+          <div class="cart-payment-methods">
+            <span>💳 Mercado Pago — tarjetas y cuotas</span>
+            <span>💬 WhatsApp — coordinación directa</span>
+          </div>
+
+          <button class="btn-whatsapp" id="pageCheckoutBtn">Finalizar compra</button>
+          <a href="index.html#products" class="btn-secondary-dark">Seguir comprando</a>
+
+          <div class="cart-trust-badges">
+            <span>🚚 Envíos a todo Uruguay</span>
+            <span>🔒 Compra 100% segura</span>
+            <span>🔁 Cambios de talle</span>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════ -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo">BuenAndar<span>.uy</span></span>
+        <nav class="footer-links">
+          <a href="index.html#products">Productos</a>
+          <a href="index.html#encargues">Encargues</a>
+          <a href="index.html#instagram">Instagram</a>
+          <a href="index.html#contacto">Contacto</a>
+          <a href="https://wa.me/59894990760" target="_blank">WhatsApp</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 BuenAndar.uy · Todos los derechos reservados</span>
+        <div class="footer-pills">
+          <span class="footer-pill">Envíos UY</span>
+          <span class="footer-pill">Stock & Encargue</span>
+          <span class="footer-pill">Productos de ata calidad</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+  <script src="cart-page.js"></script>
+</body>
+</html>

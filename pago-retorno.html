@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultado de tu pago | BuenAndar.uy</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#c8f000">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">BuenAndar<span>.uy</span></a>
+      </div>
+    </div>
+  </header>
+
+  <section id="pago-retorno">
+    <div class="container">
+      <div class="pago-retorno-box" id="pagoRetornoBox">
+        <p>Verificando el estado de tu pago…</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(location.search);
+      // "status" es el que nosotros agregamos en back_urls; "collection_status"
+      // es el que agrega Mercado Pago en el redirect real del checkout.
+      const status = params.get("status") || params.get("collection_status") || "pending";
+      const box = document.getElementById("pagoRetornoBox");
+
+      const messages = {
+        approved: {
+          title: "¡Pago aprobado!",
+          text: "Tu compra se confirmó correctamente. En breve te contactamos por WhatsApp para coordinar la entrega.",
+          cls: "is-approved"
+        },
+        pending: {
+          title: "Pago pendiente",
+          text: "Todavía estamos esperando la confirmación de tu pago. Te avisamos apenas se acredite.",
+          cls: "is-pending"
+        },
+        failure: {
+          title: "El pago no se pudo procesar",
+          text: "Podés intentar de nuevo o coordinar tu compra directamente por WhatsApp.",
+          cls: "is-failure"
+        }
+      };
+      const m = messages[status] || messages.pending;
+
+      box.className = "pago-retorno-box " + m.cls;
+      box.innerHTML = `
+        <h1>${m.title}</h1>
+        <p>${m.text}</p>
+        <div class="pago-retorno-actions">
+          <a href="index.html" class="btn-primary">Volver a la tienda</a>
+          <a href="https://wa.me/59894990760" target="_blank" class="btn-whatsapp" style="width:auto;">Hablar por WhatsApp</a>
+        </div>
+      `;
+
+      // El evento Purchase se registra ÚNICAMENTE acá, con el pago ya
+      // aprobado por Mercado Pago — nunca al hacer clic en "Finalizar compra".
+      if (status === "approved") {
+        trackEvent("Purchase", {
+          value: getTotal(),
+          currency: "UYU",
+          num_items: getCartQty()
+        });
+        cart = [];
+        saveCart();
+        updateCartBadge();
+      }
+    })();
+  </script>
+</body>
+</html>

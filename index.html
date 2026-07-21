@@ -26,6 +26,11 @@
   <meta property="og:site_name" content="BuenAndar.uy">
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- Meta Pixel: pegá acá el script base cuando tengas tu Pixel ID.
+       Los eventos ViewContent / AddToCart / InitiateCheckout / Purchase
+       ya están conectados en cart.js y script.js (no hacen nada hasta
+       que exista window.fbq, así que instalarlo no requiere tocar más código). -->
 </head>
 <body>
 
@@ -126,6 +131,32 @@ Zapatillas deportivas y championes en Uruguay | Running, Nike, Adidas, New Balan
 
 
   <!-- ══════════════════════════════════════════════════════════
+       ENTREGA INMEDIATA / POR ENCARGUE
+  ══════════════════════════════════════════════════════════ -->
+  <section id="delivery-modes">
+    <div class="container">
+      <div class="delivery-modes-grid">
+
+        <div class="delivery-mode-card is-stock">
+          <span class="delivery-mode-tag">Entrega inmediata</span>
+          <h3>Llevátelas ahora</h3>
+          <p>Modelos disponibles en stock para entrega inmediata.</p>
+          <button type="button" class="btn-lime" onclick="goToProductFilter('stock')">Ver modelos en stock</button>
+        </div>
+
+        <div class="delivery-mode-card is-preorder">
+          <span class="delivery-mode-tag">Por encargue</span>
+          <h3>Pedí tu modelo</h3>
+          <p>Elegí el modelo y el talle que buscás. Nosotros nos encargamos del resto.</p>
+          <button type="button" class="btn-primary" onclick="goToProductFilter('preorder')">Ver modelos por encargue</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
        BENEFICIOS
        FIX: id cambiado de "beneficios" a "benefits" para coincidir con CSS.
        FIX: .benefit-text strong → .benefit-title / span → .benefit-desc
@@ -191,6 +222,13 @@ Zapatillas deportivas y championes en Uruguay | Running, Nike, Adidas, New Balan
           <p class="section-sub">Modelos exclusivos · Stock y encargue · Envíos a todo el país</p>
         </div>
       </div>
+
+      <div class="product-filter-tabs" id="productFilterTabs" role="tablist" aria-label="Filtrar productos">
+        <button type="button" class="product-filter-tab active" data-filter="all" onclick="setFilter('all')">Todos los modelos</button>
+        <button type="button" class="product-filter-tab" data-filter="stock" onclick="setFilter('stock')">Entrega inmediata</button>
+        <button type="button" class="product-filter-tab" data-filter="preorder" onclick="setFilter('preorder')">Por encargue</button>
+      </div>
+
       <!-- Las secciones por marca se generan automáticamente desde script.js -->
       <div id="brandCarousels"></div>
     </div>
@@ -222,15 +260,24 @@ Zapatillas deportivas y championes en Uruguay | Running, Nike, Adidas, New Balan
         <h2 class="modal-name" id="modalName"></h2>
         <div class="modal-price" id="modalPrice"></div>
         <div class="modal-stock-tag" id="modalStock"></div>
+        <p class="modal-purchase-info" id="modalPurchaseInfo"></p>
 
         <p class="modal-desc" id="modalDesc"></p>
         <div class="modal-features" id="modalFeatures"></div>
 
-        <div class="modal-sizes-label">Seleccioná tu talle</div>
+        <div class="modal-sizes-label-row">
+          <span class="modal-sizes-label">Seleccioná tu talle</span>
+          <button type="button" class="modal-size-guide-btn" id="modalSizeGuideBtn">Guía de talles</button>
+        </div>
+        <p class="modal-size-guide-text" id="modalSizeGuideText">
+          Los talles corresponden a numeración estándar UY/ARG. Si estás entre dos números,
+          te recomendamos elegir el talle más grande. Ante cualquier duda, escribinos por
+          WhatsApp antes de comprar y te ayudamos a elegir.
+        </p>
         <div class="modal-sizes" id="modalSizes"></div>
 
         <div class="modal-actions">
-          <button class="btn-add-cart" id="modalAddCart">Sumar al carrito</button>
+          <button class="btn-add-cart" id="modalAddCart">Agregar al carrito</button>
           <button class="btn-whatsapp" id="modalWhatsApp">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
@@ -239,6 +286,14 @@ Zapatillas deportivas y championes en Uruguay | Running, Nike, Adidas, New Balan
             Comprar por WhatsApp
           </button>
         </div>
+
+        <div class="modal-benefits-mini">
+          <span>🚚 Envíos a todo Uruguay</span>
+          <span>🔒 Compra segura</span>
+          <span>💬 Atención personalizada</span>
+        </div>
+
+        <div class="modal-related" id="modalRelated"></div>
       </div>
 
     </div>
@@ -259,6 +314,9 @@ Zapatillas deportivas y championes en Uruguay | Running, Nike, Adidas, New Balan
     <div class="cart-items" id="cartItems"></div>
 
     <div class="cart-footer">
+      <div class="cart-mixed-banner" id="cartMixedBanner">
+        Tu carrito contiene productos en stock y productos por encargue. El pedido podrá enviarse cuando todos los productos estén disponibles.
+      </div>
       <div class="cart-discount-banner" id="cartDiscountBanner"></div>
       <div class="cart-totals">
         <div class="cart-row">
@@ -274,13 +332,9 @@ Zapatillas deportivas y championes en Uruguay | Running, Nike, Adidas, New Balan
           <span id="cartTotal">$0</span>
         </div>
       </div>
-      <button class="btn-whatsapp" id="cartCheckoutBtn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.557 4.116 1.532 5.849L.073 23.325a.75.75 0 00.916.916l5.476-1.459A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.65-.504-5.166-1.385l-.368-.215-3.809 1.015 1.015-3.809-.215-.368A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-        </svg>
-        Finalizar por WhatsApp
-      </button>
+      <a href="carrito.html" class="btn-ver-carrito-drawer">Ver carrito completo</a>
+      <button class="btn-whatsapp" id="cartCheckoutBtn">Finalizar compra</button>
+      <span class="checkout-caption">Pago seguro con Mercado Pago o WhatsApp</span>
     </div>
 
   </aside>
@@ -503,6 +557,7 @@ Zapatillas deportivas y championes en Uruguay | Running, Nike, Adidas, New Balan
        SCRIPTS
   ══════════════════════════════════════════════════════════ -->
   <script src="products.js"></script>
+  <script src="cart.js"></script>
   <script src="script.js"></script>
 <script type="application/ld+json">
 {
