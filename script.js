@@ -216,6 +216,8 @@ function buildProductCard(p) {
         ` : ""}
       </div>
 
+      <div class="product-installments">12x sin interés</div>
+
       ${lowStock ? `<div class="product-low-stock">¡Últimas ${totalStock} unidades!</div>` : ""}
 
       <div class="product-sizes">

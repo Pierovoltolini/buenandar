@@ -409,7 +409,7 @@ ul { list-style: none; }
 }
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: rgba(255,255,255,0.08);
 }
@@ -1955,6 +1955,12 @@ ul { list-style: none; }
   color: var(--black);
   padding: 2px 8px;
   border-radius: 2px;
+}
+.product-installments {
+  font-size: 0.7rem;
+  color: var(--gray-600);
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 .product-low-stock {
   font-family: var(--font-display);

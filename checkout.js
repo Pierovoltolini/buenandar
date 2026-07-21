@@ -14,7 +14,7 @@ const SHIPPING_METHODS = [
 ];
 
 const PAYMENT_METHODS = [
-  { id: "mp",       name: "Mercado Pago",           desc: "Todas las tarjetas · hasta 12 cuotas" },
+  { id: "mp",       name: "Mercado Pago",           desc: "Todas las tarjetas · Hasta 12 cuotas sin interés" },
   { id: "transfer", name: "Transferencia bancaria", desc: "10% de descuento en el total" },
   { id: "cash",     name: "Efectivo al retirar",    desc: "Solo retiro en local" }
 ];
