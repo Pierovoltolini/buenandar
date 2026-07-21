@@ -650,29 +650,6 @@ const products = [
     active: true
   },
 
-  // ── PRODUCTO DE PRUEBA — Mercado Pago ───────────────────────
-  // Solo para probar el checkout real de producción con un monto
-  // bajo. BORRÁ este bloque (o poné active:false) en cuanto
-  // termines la prueba, para que no quede visible a clientes reales.
-  {
-    id: 9999,
-    slug: "producto-de-prueba-mp",
-    name: "TEST — Producto de prueba (no comprar)",
-    brand: "BuenAndar",
-    category: "test",
-    price: 50,
-    compareAtPrice: null,
-    images: ["img/placeholder-stock.svg"],
-    sizes: [{ size: "ÚNICO", stock: 99 }],
-    description: "Producto de prueba para verificar el checkout de Mercado Pago en producción. No es un producto real.",
-    features: ["Prueba de pago"],
-    purchaseType: "stock",
-    estimatedDelivery: null,
-    badge: "Prueba",
-    featured: false,
-    active: true
-  },
-
   // ── PLANTILLA "EN STOCK" ────────────────────────────────────
   // Producto de ejemplo para la nueva sección "Entrega inmediata".
   // Queda desactivado (active:false) hasta que subas fotos reales.
