@@ -27,7 +27,7 @@ if (hamburger && mobileNav) {
 
 const pageCheckoutBtn = document.getElementById("pageCheckoutBtn");
 if (pageCheckoutBtn) {
-  pageCheckoutBtn.addEventListener("click", () => startCheckout(pageCheckoutBtn));
+  pageCheckoutBtn.addEventListener("click", () => { window.location.href = "checkout.html"; });
 }
 
 document.addEventListener("DOMContentLoaded", () => {

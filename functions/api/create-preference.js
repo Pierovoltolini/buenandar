@@ -10,8 +10,8 @@
 //    MP_ACCESS_TOKEN = tu Access Token privado de Mercado Pago
 //
 //  Mientras esa variable no exista, este endpoint responde 501 y
-//  el frontend (cart.js → startCheckout) cae automáticamente al
-//  checkout por WhatsApp, así el sitio nunca se rompe.
+//  el frontend (checkout.js) avisa al cliente para que reintente o
+//  elija transferencia/efectivo en su lugar.
 // ============================================================
 
 function getDiscount(qty) {
@@ -48,25 +48,57 @@ export async function onRequestPost(context) {
     return new Response(JSON.stringify({ error: "El carrito está vacío" }), { status: 400 });
   }
 
+  const customer = body.customer || {};
+  const shipping = body.shipping || { name: "Envío", price: 0 };
+  const orderNumber = body.orderNumber || `BA-${Date.now()}`;
+
   const totalQty = items.reduce((sum, i) => sum + Number(i.qty || 1), 0);
   const discount = getDiscount(totalQty);
   const origin = new URL(request.url).origin;
 
-  const preference = {
-    items: items.map(i => ({
-      title: `${formatItemLabel(i.brand, i.name)} — talle ${i.size}${i.purchaseType === "preorder" ? " (por encargue)" : ""}`,
-      quantity: Number(i.qty || 1),
+  const preferenceItems = items.map(i => ({
+    title: `${formatItemLabel(i.brand, i.name)} — talle ${i.size}${i.purchaseType === "preorder" ? " (por encargue)" : ""}`,
+    quantity: Number(i.qty || 1),
+    currency_id: "UYU",
+    unit_price: Math.round(Number(i.price) * (1 - discount) * 100) / 100
+  }));
+
+  if (Number(shipping.price) > 0) {
+    preferenceItems.push({
+      title: `Envío — ${shipping.name}`,
+      quantity: 1,
       currency_id: "UYU",
-      unit_price: Math.round(Number(i.price) * (1 - discount) * 100) / 100
-    })),
+      unit_price: Number(shipping.price)
+    });
+  }
+
+  const preference = {
+    items: preferenceItems,
+    payer: {
+      name: customer.name || undefined,
+      email: customer.email || undefined,
+      phone: customer.phone ? { number: String(customer.phone) } : undefined
+    },
+    // No hay base de datos propia: guardamos los datos del pedido acá
+    // para poder verlos en el panel de Mercado Pago (Actividad → detalle
+    // del pago → metadata).
+    metadata: {
+      order_number: orderNumber,
+      address: customer.address || "",
+      city: customer.city || "",
+      department: customer.state || "",
+      zip: customer.zip || "",
+      notes: customer.notes || "",
+      shipping_method: shipping.name || ""
+    },
     // Sin extensión .html a propósito: algunos hosts (incluido Cloudflare
     // Pages con clean URLs) redirigen /archivo.html → /archivo y ese
     // salto puede perder el query string. Pidiendo la ruta limpia
     // directamente evitamos ese redirect y el status siempre llega.
     back_urls: {
-      success: `${origin}/pago-retorno?status=approved`,
-      pending: `${origin}/pago-retorno?status=pending`,
-      failure: `${origin}/pago-retorno?status=failure`
+      success: `${origin}/pago-retorno?status=approved&order=${encodeURIComponent(orderNumber)}`,
+      pending: `${origin}/pago-retorno?status=pending&order=${encodeURIComponent(orderNumber)}`,
+      failure: `${origin}/pago-retorno?status=failure&order=${encodeURIComponent(orderNumber)}`
     },
     auto_return: "approved",
     notification_url: `${origin}/api/mp-webhook`

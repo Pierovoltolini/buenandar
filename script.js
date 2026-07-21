@@ -494,7 +494,7 @@ function addToCartFromGrid(id) {
 
 const cartCheckoutBtn = document.getElementById("cartCheckoutBtn");
 if (cartCheckoutBtn) {
-  cartCheckoutBtn.addEventListener("click", () => startCheckout(cartCheckoutBtn));
+  cartCheckoutBtn.addEventListener("click", () => { window.location.href = "checkout.html"; });
 }
 
 // ── Toast ──────────────────────────────────────────────────────

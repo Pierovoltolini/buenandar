@@ -34,6 +34,9 @@
       // "status" es el que nosotros agregamos en back_urls; "collection_status"
       // es el que agrega Mercado Pago en el redirect real del checkout.
       const status = params.get("status") || params.get("collection_status") || "pending";
+      // Viene de la URL (query string) — se escapa antes de insertarlo en el DOM.
+      const rawOrderNumber = params.get("order");
+      const orderNumber = rawOrderNumber ? rawOrderNumber.replace(/[^a-zA-Z0-9\-]/g, "").slice(0, 30) : null;
       const box = document.getElementById("pagoRetornoBox");
 
       const messages = {
@@ -58,6 +61,7 @@
       box.className = "pago-retorno-box " + m.cls;
       box.innerHTML = `
         <h1>${m.title}</h1>
+        ${orderNumber ? `<p class="order-confirmed-number">Número de pedido: <strong>${orderNumber}</strong></p>` : ""}
         <p>${m.text}</p>
         <div class="pago-retorno-actions">
           <a href="index.html" class="btn-primary">Volver a la tienda</a>
