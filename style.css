@@ -1860,19 +1860,21 @@ ul { list-style: none; }
 #delivery-modes { padding: 56px 0; background: var(--gray-100); }
 .delivery-modes-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 .delivery-mode-card {
+  position: relative;
+  overflow: hidden;
   border: none;
   border-radius: var(--radius);
-  padding: 36px 32px;
+  padding: 40px 32px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
   color: var(--white);
-  box-shadow: 0 16px 36px rgba(0,0,0,0.14);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.18);
 }
 .delivery-mode-card.is-stock {
   background: linear-gradient(135deg, #ff8a3d 0%, #ff3d2e 100%);
@@ -1880,22 +1882,44 @@ ul { list-style: none; }
 .delivery-mode-card.is-preorder {
   background: linear-gradient(135deg, #d1450f 0%, #7a1f0a 100%);
 }
+.delivery-mode-card.is-installments {
+  background: linear-gradient(135deg, #00b1ea 0%, #005f9e 100%);
+}
+/* Cinta colgante en la esquina, tipo etiqueta de oferta */
+.delivery-mode-ribbon {
+  position: absolute;
+  top: 16px;
+  right: -38px;
+  width: 150px;
+  transform: rotate(45deg);
+  background: var(--lime);
+  color: #0a0a0a;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 5px 0;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
 .delivery-mode-heading {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(1.7rem, 4.5vw, 2.3rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   line-height: 1;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 .delivery-mode-subtitle {
   font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 700;
   font-style: italic;
-  color: rgba(255,255,255,0.92);
+  color: var(--white);
 }
-.delivery-mode-card p { color: rgba(255,255,255,0.82); font-size: 0.9rem; font-weight: 300; margin-bottom: 6px; }
+.delivery-mode-card p { color: rgba(255,255,255,0.9); font-size: 0.9rem; font-weight: 400; margin-bottom: 6px; }
 .delivery-mode-card .btn-lime,
 .delivery-mode-card .btn-primary {
   background: var(--white);
@@ -1908,10 +1932,16 @@ ul { list-style: none; }
   color: var(--white);
   border-color: var(--white);
 }
+@media (max-width: 960px) {
+  .delivery-modes-grid { grid-template-columns: 1fr 1fr; }
+  .delivery-mode-card.is-installments { grid-column: span 2; }
+}
 @media (max-width: 768px) {
   .delivery-modes-grid { grid-template-columns: 1fr; gap: 16px; }
+  .delivery-mode-card.is-installments { grid-column: span 1; }
   #delivery-modes { padding: 40px 0; }
-  .delivery-mode-card { padding: 28px 24px; }
+  .delivery-mode-card { padding: 30px 24px; }
+  .delivery-mode-ribbon { top: 13px; right: -40px; width: 145px; font-size: 0.66rem; }
 }
 
 /* ── Tabs de filtro de productos ──────────────────────────────── */
