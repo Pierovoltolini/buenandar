@@ -1853,7 +1853,10 @@ ul { list-style: none; }
    (agregado para separar entrega inmediata de productos por encargue)
 ══════════════════════════════════════════════════════════════ */
 
-/* ── Secciones "Llevátelas ahora" / "Pedí tu modelo" ─────────── */
+/* ── Banners "Entrega inmediata" / "Por encargue" ──────────────
+   A propósito con colores distintos al resto de la web (naranja/rojo)
+   para que se lean como un anuncio/promo dentro de la página, no
+   como una card más. ───────────────────────────────────────── */
 #delivery-modes { padding: 56px 0; background: var(--gray-100); }
 .delivery-modes-grid {
   display: grid;
@@ -1861,41 +1864,54 @@ ul { list-style: none; }
   gap: 24px;
 }
 .delivery-mode-card {
-  background: var(--white);
-  border: 1px solid var(--gray-200);
+  border: none;
   border-radius: var(--radius);
-  padding: 32px 28px;
+  padding: 36px 32px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+  color: var(--white);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.14);
 }
-.delivery-mode-card.is-stock { border-top: 4px solid var(--lime); }
-.delivery-mode-card.is-preorder { border-top: 4px solid var(--black); }
-.delivery-mode-tag {
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 2px;
+.delivery-mode-card.is-stock {
+  background: linear-gradient(135deg, #ff8a3d 0%, #ff3d2e 100%);
 }
-.delivery-mode-card.is-stock .delivery-mode-tag { background: var(--lime); color: var(--black); }
-.delivery-mode-card.is-preorder .delivery-mode-tag { background: var(--black); color: var(--white); }
-.delivery-mode-card h3 {
+.delivery-mode-card.is-preorder {
+  background: linear-gradient(135deg, #d1450f 0%, #7a1f0a 100%);
+}
+.delivery-mode-heading {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   line-height: 1;
 }
-.delivery-mode-card p { color: var(--gray-600); font-size: 0.9rem; font-weight: 300; margin-bottom: 6px; }
+.delivery-mode-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: italic;
+  color: rgba(255,255,255,0.92);
+}
+.delivery-mode-card p { color: rgba(255,255,255,0.82); font-size: 0.9rem; font-weight: 300; margin-bottom: 6px; }
+.delivery-mode-card .btn-lime,
+.delivery-mode-card .btn-primary {
+  background: var(--white);
+  color: #1a1a1a;
+  border: 2px solid var(--white);
+}
+.delivery-mode-card .btn-lime:hover,
+.delivery-mode-card .btn-primary:hover {
+  background: transparent;
+  color: var(--white);
+  border-color: var(--white);
+}
 @media (max-width: 768px) {
   .delivery-modes-grid { grid-template-columns: 1fr; gap: 16px; }
   #delivery-modes { padding: 40px 0; }
-  .delivery-mode-card { padding: 26px 22px; }
+  .delivery-mode-card { padding: 28px 24px; }
 }
 
 /* ── Tabs de filtro de productos ──────────────────────────────── */
