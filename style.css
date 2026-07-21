@@ -2097,17 +2097,10 @@ ul { list-style: none; }
   .modal-related-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* ── Barra de compra fija en mobile dentro del modal ─────────────── */
-@media (max-width: 768px) {
-  .modal-actions {
-    position: sticky;
-    bottom: 0;
-    background: var(--white);
-    padding: 14px 0 6px;
-    margin-top: 10px;
-    box-shadow: 0 -8px 20px rgba(0,0,0,0.06);
-  }
-}
+/* NOTA: no se puede usar position:sticky acá — .modal-box tiene
+   transform:scale() para la animación de apertura, y un ancestro con
+   transform rompe el sticky de sus hijos (le pasaba en algunos
+   navegadores mobile). Los botones quedan en el flujo normal. */
 
 /* ── Carrito: aviso de modalidades mixtas ─────────────────────────── */
 .cart-mixed-banner {
