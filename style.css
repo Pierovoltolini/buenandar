@@ -2031,25 +2031,32 @@ ul { list-style: none; }
   .delivery-modes-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .delivery-mode-card.is-installments { grid-column: span 1; }
   .delivery-mode-card {
-    padding: 14px 10px;
-    gap: 4px;
-    border-radius: 10px;
+    padding: 10px 7px;
+    gap: 3px;
+    border-radius: 8px;
     text-align: center;
     align-items: center;
   }
   .delivery-mode-ribbon { display: none; }
   .delivery-mode-heading {
-    font-size: 0.8rem;
+    font-size: 0.68rem;
     line-height: 1.05;
   }
-  .delivery-mode-subtitle,
-  .delivery-mode-card p { display: none; }
+  .delivery-mode-subtitle {
+    font-size: 0.56rem;
+    line-height: 1.15;
+  }
+  .delivery-mode-card p {
+    font-size: 0.52rem;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
   .delivery-mode-card .btn-lime,
   .delivery-mode-card .btn-primary {
     width: 100%;
-    padding: 9px 6px;
-    font-size: 0.6rem;
-    letter-spacing: 0.04em;
+    padding: 7px 4px;
+    font-size: 0.5rem;
+    letter-spacing: 0.02em;
     white-space: normal;
     line-height: 1.2;
   }
