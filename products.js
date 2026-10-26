@@ -41,7 +41,7 @@ const products = [
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
     category: "running",
-    price: 5900,
+    price: 5600,
     compareAtPrice: null,
     images: [
       "img/adidasadiorblancasnegras1.webp",
@@ -62,7 +62,7 @@ const products = [
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
     category: "running",
-    price: 5900,
+    price: 5600,
     compareAtPrice: null,
     images: [
       "img/adidasapro4amarilla1.webp",
@@ -105,7 +105,7 @@ const products = [
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
     category: "running",
-    price: 5900,
+    price: 5600,
     compareAtPrice: null,
     images: [
       "img/adidasadiornegrasgris0.webp",
@@ -126,7 +126,7 @@ const products = [
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
     category: "running",
-    price: 5900,
+    price: 5600,
     compareAtPrice: null,
     images: [
       "img/adidasadiorgrisrojas1.webp",
@@ -168,7 +168,7 @@ const products = [
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
     category: "running",
-    price: 5900,
+    price: 5600,
     compareAtPrice: null,
     images: [
       "img/adizeroadiorblancanegras1.webp",
@@ -208,7 +208,7 @@ const products = [
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
     category: "running",
-    price: 5900,
+    price: 5600,
     compareAtPrice: null,
     images: [
       "img/adidasadiorblancasrojas1.webp",
@@ -247,7 +247,7 @@ const products = [
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
     category: "running",
-    price: 5900,
+    price: 5600,
     compareAtPrice: null,
     images: [
       "img/adidasadiorrojas1.webp",
@@ -286,7 +286,7 @@ const products = [
     name: "Adidas Adizero Adios Pro 4",
     brand: "Adidas",
     category: "running",
-    price: 5900,
+    price: 5600,
     compareAtPrice: null,
     images: [
       "img/adidasadiorblancasrosadas1.webp",
