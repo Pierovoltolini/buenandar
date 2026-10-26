@@ -2027,11 +2027,32 @@ ul { list-style: none; }
   .delivery-mode-card.is-installments { grid-column: span 2; }
 }
 @media (max-width: 768px) {
-  .delivery-modes-grid { grid-template-columns: 1fr; gap: 16px; }
+  #delivery-modes { padding: 28px 0; }
+  .delivery-modes-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .delivery-mode-card.is-installments { grid-column: span 1; }
-  #delivery-modes { padding: 40px 0; }
-  .delivery-mode-card { padding: 30px 24px; }
-  .delivery-mode-ribbon { top: 13px; right: -40px; width: 145px; font-size: 0.66rem; }
+  .delivery-mode-card {
+    padding: 14px 10px;
+    gap: 4px;
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+  }
+  .delivery-mode-ribbon { display: none; }
+  .delivery-mode-heading {
+    font-size: 0.8rem;
+    line-height: 1.05;
+  }
+  .delivery-mode-subtitle,
+  .delivery-mode-card p { display: none; }
+  .delivery-mode-card .btn-lime,
+  .delivery-mode-card .btn-primary {
+    width: 100%;
+    padding: 9px 6px;
+    font-size: 0.6rem;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    line-height: 1.2;
+  }
 }
 
 /* ── Tabs de filtro de productos ──────────────────────────────── */
