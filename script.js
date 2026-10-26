@@ -550,4 +550,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const p = products.find(x => x.slug === slug && x.active !== false);
     if (p) openModal(p.id);
   }
+
+  const igBubble = document.getElementById("igFloatBubble");
+  if (igBubble) {
+    setTimeout(() => {
+      igBubble.classList.add("show");
+      setTimeout(() => igBubble.classList.remove("show"), 7000);
+    }, 5000);
+  }
 });
