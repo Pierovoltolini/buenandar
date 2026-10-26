@@ -201,7 +201,7 @@ function buildProductCard(p) {
     <div class="product-img-wrap">
       <img src="${p.images[0]}" alt="${p.name}" loading="lazy">
       ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ""}
-      <span class="product-stock-badge ${isStock ? "is-stock" : "is-preorder"}">${stockLabel}</span>
+      ${isStock ? `<span class="product-stock-badge is-stock">${stockLabel}</span>` : ""}
     </div>
 
     <div class="product-info">
