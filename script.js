@@ -263,7 +263,8 @@ function renderProducts() {
   wrap.innerHTML = "";
   updateFilterTabsUI();
 
-  const activeProducts = products.filter(p => p.active !== false);
+  // Los productos con "section" se muestran aparte (Oportunidades / Ropa)
+  const activeProducts = products.filter(p => p.active !== false && !p.section);
   const filtered = currentFilter === "all"
     ? activeProducts
     : currentFilter === "indumentaria"
@@ -338,6 +339,20 @@ function renderProducts() {
 
     row.appendChild(carousel);
     wrap.appendChild(row);
+  });
+}
+
+// ── Secciones aparte: Ropa Dry Fit deportiva y Oportunidades ──
+function renderSpecialSections() {
+  [["ropa", "ropaCarousel"], ["oportunidades", "oportunidadesCarousel"]].forEach(([section, id]) => {
+    const wrap = document.getElementById(id);
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    products
+      .filter(p => p.active !== false && p.section === section)
+      .forEach(p => wrap.appendChild(buildProductCard(p)));
+    const block = wrap.closest(".special-block");
+    if (block) block.hidden = wrap.children.length === 0;
   });
 }
 
@@ -551,6 +566,7 @@ function showAddedToCartToast(product) {
 
 // ── Init ─────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
+  renderSpecialSections();
   renderProducts();
   updateCartBadge();
   registerCartUI({
