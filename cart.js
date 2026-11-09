@@ -94,11 +94,9 @@ function formatUYU(n) {
 }
 
 // ── Descuentos y totales ──────────────────────────────────────
-// Descuento por cantidad: 2 pares 10%, 3 o más 15%. Cuenta solo
-// calzado (la indumentaria no suma pares).
+// Sin descuento por cantidad (se eliminó el 10% x2 / 15% x3).
+// Se deja la función devolviendo 0 para no romper el resto del código.
 function getDiscount(qty) {
-  if (qty >= 3) return 0.15;
-  if (qty >= 2) return 0.10;
   return 0;
 }
 
@@ -275,16 +273,10 @@ function renderCartInto(ids) {
 
   if (subtotalEl) subtotalEl.textContent = `$${sub.toLocaleString("es-UY")}`;
   if (discountEl) discountEl.textContent = disc > 0 ? `-${formatUYU(discAmt)}` : "$0";
+  if (discountEl && discountEl.closest(".cart-row")) discountEl.closest(".cart-row").hidden = disc === 0;
   if (totalEl) totalEl.textContent = formatUYU(total);
 
-  if (discountBanner) {
-    if (disc > 0) {
-      discountBanner.textContent = qty >= 3 ? "🎉 Aplicaste 15% OFF — 3 pares o más" : "🎉 Aplicaste 10% OFF — 2 pares";
-      discountBanner.classList.add("visible");
-    } else {
-      discountBanner.classList.remove("visible");
-    }
-  }
+  if (discountBanner) discountBanner.classList.remove("visible");
 }
 
 // Cada página registra sus propios contenedores (drawer, página

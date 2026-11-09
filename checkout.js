@@ -27,8 +27,7 @@ const state = {
 // ── Totales ────────────────────────────────────────────────────
 // Subtotal = precio normal (Mercado Pago). Si el método elegido es
 // transferencia, cada producto pasa a su precio de transferencia
-// (transferPrice en products.js). Después se aplica el descuento por
-// cantidad (2 pares 10%, 3+ 15%), solo sobre el calzado.
+// (transferPrice en products.js). No hay descuento por cantidad.
 function computeTotals() {
   const sub = getSubtotal();
   const isTransfer = state.payment.id === "transfer";
