@@ -879,7 +879,7 @@ const products = [
     price: 1300,
     transferPrice: 1100,
     compareAtPrice: null,
-    images: ["https://lh3.googleusercontent.com/d/16mg8mUBf3brunZnqBegKTj4x-bS79ktk"],
+    images: ["img/remera-dryfit-adidas.webp"],
     sizes: [
       { size: "M · Blanco", stock: 1 },
       { size: "L · Blanco", stock: 2 },
