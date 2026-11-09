@@ -7,7 +7,7 @@
 
 let currentProduct = null;
 let currentSize = null;
-let currentFilter = "all"; // "all" | "stock" | "preorder"
+let currentFilter = "all"; // "all" | "stock" | "preorder" | "indumentaria"
 
 // ── Carrusel ────────────────────────────────────────────────
 (function initCarousel() {
@@ -158,6 +158,28 @@ function updateFilterTabsUI() {
   });
 }
 
+// ── Bloque de precios: normal (Mercado Pago) + transferencia ──
+function buildPriceBlock(p, variant) {
+  const transfer = getTransferPrice(p);
+  const pct = getTransferDiscountPct(p);
+  const hasCompare = typeof p.compareAtPrice === "number" && p.compareAtPrice > p.price;
+  return `
+    <div class="price-block${variant ? " price-block--" + variant : ""}">
+      <div class="price-line price-line--mp">
+        <span class="price-amount">${formatUYU(p.price)}</span>
+        <span class="price-label">con Mercado Pago</span>
+        ${hasCompare ? `<span class="product-compare-price">${formatUYU(p.compareAtPrice)}</span>` : ""}
+      </div>
+      <div class="price-installments">Hasta 12 cuotas sin interés</div>
+      ${transfer < p.price ? `
+      <div class="price-line price-line--transfer">
+        <span class="price-amount">${formatUYU(transfer)}</span>
+        <span class="price-label">por transferencia</span>
+        ${pct > 0 ? `<span class="price-discount-pill">-${pct}%</span>` : ""}
+      </div>` : ""}
+    </div>`;
+}
+
 // ── Tarjeta de producto (reutilizada en carruseles y relacionados) ──
 function buildProductCard(p) {
   const card = document.createElement("div");
@@ -191,8 +213,6 @@ function buildProductCard(p) {
 
   const isStock = isStockProduct(p);
   const stockLabel = getPurchaseLabelShort(p);
-  const hasDiscount = typeof p.compareAtPrice === "number" && p.compareAtPrice > p.price;
-  const discountPct = hasDiscount ? Math.round(100 - (p.price / p.compareAtPrice) * 100) : 0;
   const sizeList = normalizeSizes(p);
   const totalStock = isStock ? sizeList.reduce((sum, s) => sum + (s.stock || 0), 0) : null;
   const lowStock = isStock && totalStock !== null && totalStock > 0 && totalStock <= 3;
@@ -208,15 +228,7 @@ function buildProductCard(p) {
       <div class="product-brand">${p.brand}</div>
       <div class="product-name">${p.name}</div>
 
-      <div class="product-price-row">
-        <div class="product-price">$${p.price.toLocaleString("es-UY")} <span>UYU</span></div>
-        ${hasDiscount ? `
-          <div class="product-compare-price">$${p.compareAtPrice.toLocaleString("es-UY")}</div>
-          <div class="product-discount-pill">-${discountPct}%</div>
-        ` : ""}
-      </div>
-
-      <div class="product-installments">12x sin interés</div>
+      ${buildPriceBlock(p, "card")}
 
       ${lowStock ? `<div class="product-low-stock">¡Últimas ${totalStock} unidades!</div>` : ""}
 
@@ -254,7 +266,9 @@ function renderProducts() {
   const activeProducts = products.filter(p => p.active !== false);
   const filtered = currentFilter === "all"
     ? activeProducts
-    : activeProducts.filter(p => p.purchaseType === currentFilter);
+    : currentFilter === "indumentaria"
+      ? activeProducts.filter(p => p.category === "indumentaria")
+      : activeProducts.filter(p => p.purchaseType === currentFilter);
 
   if (filtered.length === 0) {
     wrap.innerHTML = currentFilter === "stock" ? `
@@ -269,12 +283,17 @@ function renderProducts() {
     return;
   }
 
-  const BRAND_ORDER = ["Adidas", "Nike", "On Cloud", "New Balance"];
+  // Zapatillas agrupadas por marca; la indumentaria va en su propia fila.
+  const BRAND_ORDER = ["Adidas", "Nike", "On Cloud", "New Balance", "Indumentaria"];
+  const groupOf = p => (p.category === "indumentaria" ? "Indumentaria" : p.brand);
   const byBrand = {};
   filtered.forEach(p => {
-    if (!byBrand[p.brand]) byBrand[p.brand] = [];
-    byBrand[p.brand].push(p);
+    const g = groupOf(p);
+    if (!byBrand[g]) byBrand[g] = [];
+    byBrand[g].push(p);
   });
+  // Primero lo que está en stock dentro de cada fila
+  Object.values(byBrand).forEach(list => list.sort((a, b) => (isStockProduct(b) ? 1 : 0) - (isStockProduct(a) ? 1 : 0)));
 
   const allBrands = [
     ...BRAND_ORDER.filter(b => byBrand[b]),
@@ -292,7 +311,7 @@ function renderProducts() {
     title.innerHTML = `
       <span class="brand-row-name">${brand}</span>
       <span class="brand-row-count">
-        ${brandProducts.length} modelo${brandProducts.length !== 1 ? "s" : ""}
+        ${brandProducts.length} ${brand === "Indumentaria" ? "producto" : "modelo"}${brandProducts.length !== 1 ? "s" : ""}
       </span>
     `;
     row.appendChild(title);
@@ -302,7 +321,7 @@ function renderProducts() {
 
     brandProducts.forEach(p => carousel.appendChild(buildProductCard(p)));
 
-    if (currentFilter !== "stock") {
+    if (currentFilter !== "stock" && brand !== "Indumentaria") {
       const consultCard = document.createElement("div");
       consultCard.className = "product-card carousel-product consult-card";
       consultCard.innerHTML = `
@@ -334,10 +353,7 @@ function openModal(id) {
   document.getElementById("modalBrand").textContent = p.brand;
   document.getElementById("modalName").textContent = p.name;
 
-  const hasDiscount = typeof p.compareAtPrice === "number" && p.compareAtPrice > p.price;
-  document.getElementById("modalPrice").innerHTML = hasDiscount
-    ? `$${p.price.toLocaleString("es-UY")} UYU <span class="modal-compare-price">$${p.compareAtPrice.toLocaleString("es-UY")}</span>`
-    : `$${p.price.toLocaleString("es-UY")} UYU`;
+  document.getElementById("modalPrice").innerHTML = buildPriceBlock(p, "modal");
 
   const stockTag = document.getElementById("modalStock");
   stockTag.textContent = getPurchaseLabel(p);
@@ -409,7 +425,8 @@ function selectSize(el, size) {
 function renderRelatedProducts(p) {
   const wrap = document.getElementById("modalRelated");
   if (!wrap) return;
-  const related = products.filter(x => x.active !== false && x.id !== p.id && x.brand === p.brand).slice(0, 4);
+  const isClothing = x => x.category === "indumentaria";
+  const related = products.filter(x => x.active !== false && x.id !== p.id && x.brand === p.brand && isClothing(x) === isClothing(p)).slice(0, 4);
   if (related.length === 0) {
     wrap.innerHTML = "";
     return;
@@ -421,7 +438,7 @@ function renderRelatedProducts(p) {
         <button type="button" class="modal-related-item" onclick="openModal(${r.id})">
           <img src="${r.images[0]}" alt="${r.name}" loading="lazy">
           <span class="modal-related-name">${r.name}</span>
-          <span class="modal-related-price">$${r.price.toLocaleString("es-UY")}</span>
+          <span class="modal-related-price">${formatUYU(r.price)} · ${formatUYU(getTransferPrice(r))} transf.</span>
         </button>
       `).join("")}
     </div>`;
@@ -457,7 +474,8 @@ document.getElementById("modalWhatsApp").addEventListener("click", () => {
   if (!isSizeAvailable(currentProduct, currentSize)) { showToast("Sin stock en este talle"); return; }
   const modality = isStockProduct(currentProduct) ? "en stock" : "por encargue";
   const label = formatItemLabel(currentProduct.brand, currentProduct.name);
-  const msg = `Hola, quiero comprar este par: ${label} talle ${currentSize} (${modality}).`;
+  const what = currentProduct.category === "indumentaria" ? "este producto" : "este par";
+  const msg = `Hola, quiero comprar ${what}: ${label} talle ${currentSize} (${modality}).`;
   const waNumber = `598${WA_NUMBER.replace(/^0/, "")}`;
   window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, "_blank");
 });

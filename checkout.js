@@ -14,12 +14,10 @@ const SHIPPING_METHODS = [
 ];
 
 const PAYMENT_METHODS = [
-  { id: "mp",       name: "Mercado Pago",           desc: "Todas las tarjetas · Hasta 12 cuotas sin interés" },
-  { id: "transfer", name: "Transferencia bancaria", desc: "10% de descuento en el total" },
+  { id: "mp",       name: "Mercado Pago",           desc: "Precio normal · Hasta 12 cuotas sin interés" },
+  { id: "transfer", name: "Transferencia bancaria", desc: "Precio especial por transferencia en cada producto" },
   { id: "cash",     name: "Efectivo al retirar",    desc: "Solo retiro en local" }
 ];
-
-const TRANSFER_DISCOUNT_PERCENT = 10;
 
 const state = {
   shipping: SHIPPING_METHODS[0],
@@ -27,26 +25,21 @@ const state = {
 };
 
 // ── Totales ────────────────────────────────────────────────────
-// Aplica primero el descuento por cantidad (2/3+ pares, ya definido
-// en cart.js) y, si el método elegido es transferencia, un 10% extra
-// sobre lo que queda. Ambos se calculan sobre el subtotal, no el envío.
+// Subtotal = precio normal (Mercado Pago). Si el método elegido es
+// transferencia, cada producto pasa a su precio de transferencia
+// (transferPrice en products.js). Después se aplica el descuento por
+// cantidad (2 pares 10%, 3+ 15%), solo sobre el calzado.
 function computeTotals() {
   const sub = getSubtotal();
-  const qtyDiscountPct = getDiscount(getCartQty());
+  const isTransfer = state.payment.id === "transfer";
+  const unit = item => (isTransfer ? getTransferPrice(item) : item.price);
 
-  let discounted = sub;
-  let discountAmount = 0;
+  const base = cart.reduce((sum, i) => sum + unit(i) * i.qty, 0);
+  const footwearBase = cart.filter(isFootwearItem).reduce((sum, i) => sum + unit(i) * i.qty, 0);
+  const qtyDiscount = getQtyDiscountAmount(footwearBase);
 
-  if (qtyDiscountPct > 0) {
-    const amt = Math.round(discounted * qtyDiscountPct);
-    discounted -= amt;
-    discountAmount += amt;
-  }
-  if (state.payment.id === "transfer") {
-    const amt = Math.round(discounted * TRANSFER_DISCOUNT_PERCENT / 100);
-    discounted -= amt;
-    discountAmount += amt;
-  }
+  const discounted = base - qtyDiscount;
+  const discountAmount = sub - discounted;
 
   const shipping = state.shipping.price;
   return { sub, shipping, discountAmount, total: discounted + shipping };

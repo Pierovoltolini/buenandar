@@ -2728,3 +2728,36 @@ ul { list-style: none; }
   .order-confirmed { padding: 32px 20px; }
   .checkout-radio-body { flex-direction: row; }
 }
+/* ── Precios: Mercado Pago (normal) + transferencia ─────────── */
+.price-block { margin-bottom: 14px; display: flex; flex-direction: column; gap: 4px; }
+.price-line { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; line-height: 1.1; }
+.price-amount { font-family: var(--font-display); font-weight: 900; letter-spacing: -0.02em; color: var(--black); }
+.price-label { font-size: 0.78rem; color: var(--gray-600); }
+.price-line--mp .price-amount { font-size: 1.5rem; }
+.price-installments { font-size: 0.72rem; color: var(--gray-600); margin-top: -2px; }
+.price-line--transfer {
+  margin-top: 4px;
+  padding: 6px 8px;
+  background: var(--gray-100);
+  border-left: 3px solid var(--lime);
+  border-radius: var(--radius);
+}
+.price-line--transfer .price-amount { font-size: 1.15rem; }
+.price-line--transfer .price-label { color: var(--gray-800); font-weight: 600; }
+.price-discount-pill {
+  margin-left: auto;
+  background: var(--lime);
+  color: var(--black);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+}
+.price-block--modal .price-line--mp .price-amount { font-size: 2rem; }
+.price-block--modal .price-line--transfer .price-amount { font-size: 1.5rem; }
+.price-block--modal .price-label { font-size: 0.9rem; }
+.modal-price .price-block { font-size: 1rem; letter-spacing: 0; }
+.cart-item-transfer { font-size: 0.72rem; color: var(--gray-800); font-weight: 600; margin-top: 2px; }
+.modal-related-price { font-size: 0.72rem; }
