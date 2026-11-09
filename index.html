@@ -61,6 +61,7 @@
 
         <!-- Nav desktop -->
         <nav class="nav">
+          <a href="#oportunidades">Oportunidades</a>
           <a href="#products">Productos</a>
           <a href="#encargues">Stock y Encargue</a>
           <a href="#instagram">Instagram</a>
@@ -90,6 +91,7 @@
 
   <!-- Mobile Nav -->
   <nav class="mobile-nav" id="mobileNav">
+    <a href="#oportunidades">Oportunidades</a>
     <a href="#products">Productos</a>
     <a href="#encargues">Stock y Encargue</a>
     <a href="#instagram">Instagram</a>
@@ -274,6 +276,37 @@ Zapatillas deportivas y championes en Uruguay | Running, Nike, Adidas, New Balan
 
 
   <!-- ══════════════════════════════════════════════════════════
+       NUEVO INGRESO: ROPA DRY FIT + OPORTUNIDADES (calzado en stock)
+       Los productos salen de products.js (campo "section")
+  ══════════════════════════════════════════════════════════ -->
+  <section id="oportunidades" class="special-section">
+    <div class="container">
+      <div class="special-block">
+        <div class="section-header">
+          <div>
+            <div class="special-eyebrow">Nuevo ingreso en stock</div>
+            <h2 class="section-title">Ropa Dry Fit<br>deportiva</h2>
+            <p class="section-sub">Shorts y remeras para entrenar · Entrega inmediata · Envíos a todo el país</p>
+          </div>
+        </div>
+        <div class="products-carousel" id="ropaCarousel"></div>
+      </div>
+
+      <div class="special-block">
+        <div class="section-header">
+          <div>
+            <div class="special-eyebrow">Calzado en stock · Entrega inmediata</div>
+            <h2 class="section-title">Oportunidades</h2>
+            <p class="section-sub">Pares listos para enviar · Últimas unidades por talle</p>
+          </div>
+        </div>
+        <div class="products-carousel" id="oportunidadesCarousel"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
        PRODUCTOS
   ══════════════════════════════════════════════════════════ -->
   <section id="products">
@@ -289,7 +322,6 @@ Zapatillas deportivas y championes en Uruguay | Running, Nike, Adidas, New Balan
         <button type="button" class="product-filter-tab active" data-filter="all" onclick="setFilter('all')">Todos los modelos</button>
         <button type="button" class="product-filter-tab" data-filter="stock" onclick="setFilter('stock')">Entrega inmediata</button>
         <button type="button" class="product-filter-tab" data-filter="preorder" onclick="setFilter('preorder')">Por encargue</button>
-        <button type="button" class="product-filter-tab" data-filter="indumentaria" onclick="setFilter('indumentaria')">Indumentaria</button>
       </div>
 
       <!-- Las secciones por marca se generan automáticamente desde script.js -->
