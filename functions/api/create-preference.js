@@ -15,9 +15,7 @@
 // ============================================================
 
 function getDiscount(qty) {
-  // Debe reflejar exactamente la misma regla que cart.js (getDiscount)
-  if (qty >= 3) return 0.15;
-  if (qty >= 2) return 0.10;
+  // Sin descuento por cantidad (igual que cart.js)
   return 0;
 }
 
