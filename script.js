@@ -173,7 +173,7 @@ function buildPriceBlock(p, variant) {
       <div class="price-installments">Hasta 12 cuotas sin interés</div>
       ${transfer < p.price ? `
       <div class="price-line price-line--transfer">
-        <span class="price-amount">${formatUYU(transfer)}</span>
+        <span class="price-amount">${formatUYU(transfer)}${p.section === "ropa" ? ' <span class="price-fire" aria-hidden="true">🔥</span>' : ""}</span>
         <span class="price-label">por transferencia</span>
         ${pct > 0 ? `<span class="price-discount-pill">-${pct}%</span>` : ""}
       </div>` : ""}
