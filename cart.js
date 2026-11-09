@@ -68,11 +68,52 @@ function formatItemLabel(brand, name) {
   return name.toLowerCase().startsWith(brand.toLowerCase()) ? name : `${brand} ${name}`;
 }
 
+// ── Precios: Mercado Pago (normal) y transferencia ───────────
+// price = precio normal con Mercado Pago (hasta 12 cuotas).
+// transferPrice = precio con transferencia. Si un producto no lo
+// tiene cargado, se usa el 10% de descuento por transferencia.
+const TRANSFER_FALLBACK_PERCENT = 10;
+
+function getTransferPrice(productOrItem) {
+  if (!productOrItem) return 0;
+  if (typeof productOrItem.transferPrice === "number") return productOrItem.transferPrice;
+  const product = typeof products !== "undefined" ? products.find(p => p.id === productOrItem.id) : null;
+  if (product && typeof product.transferPrice === "number") return product.transferPrice;
+  return Math.round(productOrItem.price * (1 - TRANSFER_FALLBACK_PERCENT / 100));
+}
+
+function getTransferDiscountPct(productOrItem) {
+  const price = productOrItem.price;
+  const transfer = getTransferPrice(productOrItem);
+  if (!price || transfer >= price) return 0;
+  return Math.round(100 - (transfer / price) * 100);
+}
+
+function formatUYU(n) {
+  return "$" + Math.round(n).toLocaleString("es-UY");
+}
+
 // ── Descuentos y totales ──────────────────────────────────────
+// Descuento por cantidad: 2 pares 10%, 3 o más 15%. Cuenta solo
+// calzado (la indumentaria no suma pares).
 function getDiscount(qty) {
   if (qty >= 3) return 0.15;
   if (qty >= 2) return 0.10;
   return 0;
+}
+
+function isFootwearItem(item) {
+  if (item.category) return item.category !== "indumentaria";
+  const product = typeof products !== "undefined" ? products.find(p => p.id === item.id) : null;
+  return !product || product.category !== "indumentaria";
+}
+
+function getPairsQty() {
+  return cart.filter(isFootwearItem).reduce((sum, i) => sum + i.qty, 0);
+}
+
+function getFootwearSubtotal() {
+  return cart.filter(isFootwearItem).reduce((sum, i) => sum + i.price * i.qty, 0);
 }
 
 function getCartQty() {
@@ -83,10 +124,14 @@ function getSubtotal() {
   return cart.reduce((sum, i) => sum + i.price * i.qty, 0);
 }
 
+// Monto del descuento por cantidad (se aplica solo sobre el calzado).
+function getQtyDiscountAmount(footwearBase) {
+  const base = typeof footwearBase === "number" ? footwearBase : getFootwearSubtotal();
+  return Math.round(base * getDiscount(getPairsQty()));
+}
+
 function getTotal() {
-  const sub = getSubtotal();
-  const disc = getDiscount(getCartQty());
-  return sub * (1 - disc);
+  return getSubtotal() - getQtyDiscountAmount();
 }
 
 function cartIsMixed() {
@@ -113,6 +158,8 @@ function addToCart(product, size, qty = 1) {
       name: product.name,
       brand: product.brand,
       price: product.price,
+      transferPrice: getTransferPrice(product),
+      category: product.category,
       image: product.images[0],
       size,
       qty: isStockProduct(product) && typeof stock === "number" ? Math.min(qty, stock) : qty,
@@ -206,9 +253,10 @@ function renderCartInto(ids) {
           </span>
         </div>
         <div class="cart-item-price">
-          <span class="cart-item-unit-price">$${item.price.toLocaleString("es-UY")} c/u</span>
-          <span class="cart-item-line-total">$${(item.price * item.qty).toLocaleString("es-UY")}</span>
+          <span class="cart-item-unit-price">${formatUYU(item.price)} c/u con Mercado Pago</span>
+          <span class="cart-item-line-total">${formatUYU(item.price * item.qty)}</span>
         </div>
+        <div class="cart-item-transfer">${formatUYU(getTransferPrice(item))} c/u por transferencia</div>
         <div class="cart-qty">
           <button class="qty-btn" onclick="changeQty(${item.id}, '${item.size}', -1)" aria-label="Restar cantidad">−</button>
           <span class="qty-num">${item.qty}</span>
@@ -219,15 +267,15 @@ function renderCartInto(ids) {
     </div>
   `).join("");
 
-  const qty = getCartQty();
+  const qty = getPairsQty();
   const sub = getSubtotal();
   const disc = getDiscount(qty);
-  const discAmt = sub * disc;
+  const discAmt = getQtyDiscountAmount();
   const total = sub - discAmt;
 
   if (subtotalEl) subtotalEl.textContent = `$${sub.toLocaleString("es-UY")}`;
-  if (discountEl) discountEl.textContent = disc > 0 ? `-$${discAmt.toLocaleString("es-UY")}` : "$0";
-  if (totalEl) totalEl.textContent = `$${total.toLocaleString("es-UY")}`;
+  if (discountEl) discountEl.textContent = disc > 0 ? `-${formatUYU(discAmt)}` : "$0";
+  if (totalEl) totalEl.textContent = formatUYU(total);
 
   if (discountBanner) {
     if (disc > 0) {

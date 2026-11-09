@@ -52,7 +52,9 @@ export async function onRequestPost(context) {
   const shipping = body.shipping || { name: "Envío", price: 0 };
   const orderNumber = body.orderNumber || `BA-${Date.now()}`;
 
-  const totalQty = items.reduce((sum, i) => sum + Number(i.qty || 1), 0);
+  // Descuento por cantidad: cuenta solo calzado (la indumentaria no suma pares)
+  const isFootwear = i => i.category !== "indumentaria";
+  const totalQty = items.filter(isFootwear).reduce((sum, i) => sum + Number(i.qty || 1), 0);
   const discount = getDiscount(totalQty);
   const origin = new URL(request.url).origin;
 
@@ -60,7 +62,7 @@ export async function onRequestPost(context) {
     title: `${formatItemLabel(i.brand, i.name)} — talle ${i.size}${i.purchaseType === "preorder" ? " (por encargue)" : ""}`,
     quantity: Number(i.qty || 1),
     currency_id: "UYU",
-    unit_price: Math.round(Number(i.price) * (1 - discount) * 100) / 100
+    unit_price: Math.round(Number(i.price) * (1 - (isFootwear(i) ? discount : 0)) * 100) / 100
   }));
 
   if (Number(shipping.price) > 0) {
