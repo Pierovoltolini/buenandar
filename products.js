@@ -9,6 +9,8 @@
 //  price          → precio normal (Mercado Pago, hasta 12 cuotas)
 //  transferPrice  → precio con transferencia (más barato)
 //  category       → "running" | "diario" | "indumentaria"
+//  section        → "oportunidades" | "ropa" (se muestran en la sección
+//                   aparte de la home, no en la tienda completa)
 //
 //  sizes acepta dos formatos:
 //   - ["38","39",...]                 → talle sin conteo de stock (encargue)
@@ -575,11 +577,11 @@ const products = [
   {
     id: 27,
     slug: "on-cloud-27",
-    name: "On Cloud",
+    name: "On Cloud Hombre",
     brand: "On Cloud",
     category: "diario",
-    price: 5100,
-    transferPrice: 4800,
+    price: 5800,
+    transferPrice: 5500,
     compareAtPrice: null,
     images: ["img/oncloudbyg.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
@@ -594,11 +596,11 @@ const products = [
   {
     id: 28,
     slug: "on-cloud-28",
-    name: "On Cloud",
+    name: "On Cloud Hombre",
     brand: "On Cloud",
     category: "diario",
-    price: 5100,
-    transferPrice: 4800,
+    price: 5800,
+    transferPrice: 5500,
     compareAtPrice: null,
     images: ["img/onrosa.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
@@ -613,11 +615,11 @@ const products = [
   {
     id: 29,
     slug: "on-cloud-29",
-    name: "On Cloud",
+    name: "On Cloud Hombre",
     brand: "On Cloud",
     category: "diario",
-    price: 5100,
-    transferPrice: 4800,
+    price: 5800,
+    transferPrice: 5500,
     compareAtPrice: null,
     images: ["img/ontotalwhite.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
@@ -632,11 +634,11 @@ const products = [
   {
     id: 30,
     slug: "on-cloud-30",
-    name: "On Cloud",
+    name: "On Cloud Hombre",
     brand: "On Cloud",
     category: "diario",
-    price: 5100,
-    transferPrice: 4800,
+    price: 5800,
+    transferPrice: 5500,
     compareAtPrice: null,
     images: ["img/onnyv1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
@@ -651,11 +653,11 @@ const products = [
   {
     id: 31,
     slug: "on-cloud-31",
-    name: "On Cloud",
+    name: "On Cloud Hombre",
     brand: "On Cloud",
     category: "diario",
-    price: 5100,
-    transferPrice: 4800,
+    price: 5800,
+    transferPrice: 5500,
     compareAtPrice: null,
     images: ["img/onnyb1.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
@@ -670,11 +672,11 @@ const products = [
   {
     id: 32,
     slug: "on-cloud-32",
-    name: "On Cloud",
+    name: "On Cloud Hombre",
     brand: "On Cloud",
     category: "diario",
-    price: 5100,
-    transferPrice: 4800,
+    price: 5800,
+    transferPrice: 5500,
     compareAtPrice: null,
     images: ["img/ontotalblack.webp"],
     sizes: ["38","39","40","41","42","43","44","45"],
@@ -690,6 +692,7 @@ const products = [
   // ── EN STOCK · ZAPATILLAS (inventario BuenAndar, nov 2026) ──
   {
     id: 101,
+    section: "oportunidades",
     slug: "adidas-evo-sl-black-silver",
     name: "Adidas Evo SL Black / Silver",
     brand: "Adidas",
@@ -717,6 +720,7 @@ const products = [
   },
   {
     id: 102,
+    section: "oportunidades",
     slug: "adidas-dropset-elite-blanco-negro",
     name: "Adidas Dropset Elite Blanco / Negro",
     brand: "Adidas",
@@ -740,6 +744,7 @@ const products = [
   },
   {
     id: 103,
+    section: "oportunidades",
     slug: "adidas-adizero-pro-4-blanca",
     name: "Adidas Adizero Adios Pro 4 Blanca",
     brand: "Adidas",
@@ -765,6 +770,7 @@ const products = [
   },
   {
     id: 104,
+    section: "oportunidades",
     slug: "new-balance-fuelcell-crema",
     name: "New Balance FuelCell Crema / Beige",
     brand: "New Balance",
@@ -787,6 +793,7 @@ const products = [
   },
   {
     id: 105,
+    section: "oportunidades",
     slug: "new-balance-fuelcell-sc-trainer",
     name: "New Balance FuelCell SC Trainer Blanco / Turquesa",
     brand: "New Balance",
@@ -806,6 +813,7 @@ const products = [
   },
   {
     id: 106,
+    section: "oportunidades",
     slug: "on-cloud-blanco-rosa",
     name: "On Cloud Blanco / Rosa",
     brand: "On Cloud",
@@ -831,6 +839,7 @@ const products = [
   // En indumentaria el "talle" combina talle y color (ej: "M · Negro").
   {
     id: 201,
+    section: "ropa",
     slug: "short-adidas-compresion",
     name: "Short Adidas con compresión (calza) running",
     brand: "Adidas",
@@ -862,6 +871,7 @@ const products = [
   },
   {
     id: 202,
+    section: "ropa",
     slug: "remera-adidas-dry-fit",
     name: "Remera Adidas Dry Fit",
     brand: "Adidas",
@@ -893,6 +903,7 @@ const products = [
   },
   {
     id: 203,
+    section: "ropa",
     slug: "short-on-compresion",
     name: "Short On con compresión (calza) running",
     brand: "On Cloud",
@@ -915,25 +926,6 @@ const products = [
     purchaseType: "stock",
     estimatedDelivery: null,
     badge: null,
-    featured: false,
-    active: true
-  },
-  {
-    id: 204,
-    slug: "camisa-polo-ralph-lauren",
-    name: "Camisa Polo Ralph Lauren",
-    brand: "Ralph Lauren",
-    category: "indumentaria",
-    price: 3200,
-    transferPrice: 2800,
-    compareAtPrice: null,
-    images: ["https://lh3.googleusercontent.com/d/10bDoC-jtrXMqCpahFzX29N7ScI4hP4pK"],
-    sizes: ["Consultar talle y color"],
-    description: "Camisa Polo Ralph Lauren en varios colores. Por encargue: escribinos y te confirmamos talle y color.",
-    features: ["Por encargue", "Varios colores", "Casual"],
-    purchaseType: "preorder",
-    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
-    badge: "Encargue",
     featured: false,
     active: true
   },
