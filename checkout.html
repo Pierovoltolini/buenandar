@@ -9,7 +9,7 @@
   <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#c8f000">
 
-  <link rel="stylesheet" href="style.css?v=20261109d">
+  <link rel="stylesheet" href="style.css?v=20261117a">
 
   <!-- Meta Pixel Code -->
   <script>
@@ -201,6 +201,10 @@
               <span>Descuento</span>
               <span id="checkout-discount">-$0</span>
             </div>
+            <div class="cart-row discount" id="checkout-coupon-row" hidden>
+              <span><span id="checkout-coupon-label">Cupón</span> <button type="button" class="coupon-remove" id="checkout-coupon-remove" aria-label="Quitar cupón">quitar</button></span>
+              <span id="checkout-coupon">-$0</span>
+            </div>
             <div class="cart-row cart-row-shipping">
               <span>Envío</span>
               <span id="checkout-shipping">$0</span>
@@ -210,6 +214,16 @@
               <span id="checkout-total">$0</span>
             </div>
           </div>
+
+          <div class="checkout-coupon-box" id="checkout-coupon-box">
+            <label for="checkout-coupon-input">¿Tenés cupón?</label>
+            <div class="checkout-coupon-input-row">
+              <input id="checkout-coupon-input" type="text" placeholder="BA300-XXXXX" autocomplete="off">
+              <button type="button" id="checkout-coupon-apply">Aplicar</button>
+            </div>
+            <button type="button" class="checkout-coupon-get" id="checkout-coupon-get">¿No tenés? Registrate y llevate $300 →</button>
+          </div>
+          <p class="checkout-coupon-mp-note" id="checkout-coupon-mp-note" hidden>Con cupón y Mercado Pago, confirmás el pedido y te pasamos por WhatsApp el link de pago con los $300 ya descontados.</p>
 
           <div class="cart-trust-badges">
             <span>🚚 Envíos a todo Uruguay</span>
@@ -251,8 +265,10 @@
 
   <div class="toast" id="toast"></div>
 
-  <script src="products.js?v=20261109d"></script>
-  <script src="cart.js?v=20261109d"></script>
-  <script src="checkout.js?v=20261109d"></script>
+  <script src="products.js?v=20261117a"></script>
+  <script src="cart.js?v=20261117a"></script>
+  <script src="coupon.js?v=20261117a"></script>
+  <script src="checkout.js?v=20261117a"></script>
+  <script>BA_COUPON.init({ pill: false });</script>
 </body>
 </html>

@@ -101,7 +101,7 @@ function getDiscount(qty) {
 }
 
 function isFootwearItem(item) {
-  if (item.category) return item.category !== "indumentaria";
+  if (item.category) return !["indumentaria", "accesorios"].includes(item.category);
   const product = typeof products !== "undefined" ? products.find(p => p.id === item.id) : null;
   return !product || product.category !== "indumentaria";
 }

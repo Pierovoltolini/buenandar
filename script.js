@@ -230,7 +230,7 @@ function buildProductCard(p) {
 
       ${buildPriceBlock(p, "card")}
 
-      ${lowStock ? `<div class="product-low-stock">¡Últimas ${totalStock} unidades!</div>` : ""}
+      ${lowStock ? `<div class="product-low-stock">${totalStock === 1 ? "Última unidad" : `Últimas ${totalStock} unidades`}</div>` : ""}
 
       <div class="product-sizes">
         ${sizeList.map(s => `<span class="size-pill${!isSizeAvailable(p, s.size) ? " is-sold-out" : ""}">${s.size}</span>`).join("")}
@@ -344,7 +344,7 @@ function renderProducts() {
 
 // ── Secciones aparte: Ropa Dry Fit deportiva y Oportunidades ──
 function renderSpecialSections() {
-  [["ropa", "ropaCarousel"], ["oportunidades", "oportunidadesCarousel"]].forEach(([section, id]) => {
+  [["lentes", "lentesCarousel"], ["ropa", "ropaCarousel"], ["oportunidades", "oportunidadesCarousel"]].forEach(([section, id]) => {
     const wrap = document.getElementById(id);
     if (!wrap) return;
     wrap.innerHTML = "";
@@ -400,6 +400,18 @@ function openModal(id) {
   const addBtn = document.getElementById("modalAddCart");
   addBtn.textContent = isStockProduct(p) ? "Agregar al carrito" : "Encargar producto";
 
+  // Accesorios (lentes): talle único, sin guía de talles
+  const isAcc = p.category === "accesorios";
+  const guideWrap = document.getElementById("modalSizeGuideBtn");
+  if (guideWrap) guideWrap.hidden = isAcc;
+  const guideText = document.getElementById("modalSizeGuideText");
+  if (guideText && isAcc) guideText.classList.remove("visible");
+  const onlySize = normalizeSizes(p);
+  if (onlySize.length === 1 && isSizeAvailable(p, onlySize[0].size)) {
+    const btn = sizesWrap.querySelector(".modal-size-btn");
+    if (btn) selectSize(btn, onlySize[0].size);
+  }
+
   renderRelatedProducts(p);
 
   modalOverlay.classList.add("active");
@@ -440,7 +452,7 @@ function selectSize(el, size) {
 function renderRelatedProducts(p) {
   const wrap = document.getElementById("modalRelated");
   if (!wrap) return;
-  const isClothing = x => x.category === "indumentaria";
+  const isClothing = x => x.category === "indumentaria" ? "ropa" : x.category === "accesorios" ? "acc" : "calzado";
   const related = products.filter(x => x.active !== false && x.id !== p.id && x.brand === p.brand && isClothing(x) === isClothing(p)).slice(0, 4);
   if (related.length === 0) {
     wrap.innerHTML = "";
@@ -489,7 +501,7 @@ document.getElementById("modalWhatsApp").addEventListener("click", () => {
   if (!isSizeAvailable(currentProduct, currentSize)) { showToast("Sin stock en este talle"); return; }
   const modality = isStockProduct(currentProduct) ? "en stock" : "por encargue";
   const label = formatItemLabel(currentProduct.brand, currentProduct.name);
-  const what = currentProduct.category === "indumentaria" ? "este producto" : "este par";
+  const what = ["indumentaria", "accesorios"].includes(currentProduct.category) ? "este producto" : "este par";
   const msg = `Hola, quiero comprar ${what}: ${label} talle ${currentSize} (${modality}).`;
   const waNumber = `598${WA_NUMBER.replace(/^0/, "")}`;
   window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, "_blank");

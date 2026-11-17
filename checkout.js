@@ -19,10 +19,26 @@ const PAYMENT_METHODS = [
   { id: "cash",     name: "Efectivo al retirar",    desc: "Solo retiro en local" }
 ];
 
+const COUPON_AMOUNT = 300;
+const COUPON_RE = /^BA300-[A-Z2-9]{5}$/;
+
 const state = {
   shipping: SHIPPING_METHODS[0],
-  payment: PAYMENT_METHODS[0]
+  payment: PAYMENT_METHODS[0],
+  coupon: null
 };
+
+// Cupón de bienvenida: se descuenta del total y lo verificamos
+// contra la planilla (pestaña Registros) al confirmar el pedido.
+function getCouponAmount(beforeShipping) {
+  return state.coupon ? Math.min(COUPON_AMOUNT, beforeShipping) : 0;
+}
+
+// Con cupón, Mercado Pago no se cobra online: le pasamos el link
+// por WhatsApp con el cupón ya descontado (así lo validamos antes).
+function mpWithCoupon() {
+  return state.payment.id === "mp" && !!state.coupon;
+}
 
 // ── Totales ────────────────────────────────────────────────────
 // Subtotal = precio normal (Mercado Pago). Si el método elegido es
@@ -40,14 +56,15 @@ function computeTotals() {
   const discounted = base - qtyDiscount;
   const discountAmount = sub - discounted;
 
+  const couponAmount = getCouponAmount(discounted);
   const shipping = state.shipping.price;
-  return { sub, shipping, discountAmount, total: discounted + shipping };
+  return { sub, shipping, discountAmount, couponAmount, total: discounted - couponAmount + shipping };
 }
 
 // ── Render resumen ───────────────────────────────────────────────
 function renderSummary() {
   const linesEl = document.getElementById("checkout-lines");
-  const { sub, shipping, discountAmount, total } = computeTotals();
+  const { sub, shipping, discountAmount, couponAmount, total } = computeTotals();
 
   linesEl.innerHTML = cart.map(item => `
     <div class="checkout-line">
@@ -73,6 +90,47 @@ function renderSummary() {
   } else {
     discountRow.hidden = true;
   }
+
+  const couponRow = document.getElementById("checkout-coupon-row");
+  if (couponRow) {
+    couponRow.hidden = !couponAmount;
+    document.getElementById("checkout-coupon-label").textContent = `Cupón ${state.coupon || ""}`;
+    document.getElementById("checkout-coupon").textContent = `-$${couponAmount.toLocaleString("es-UY")}`;
+  }
+  const couponBox = document.getElementById("checkout-coupon-box");
+  if (couponBox) couponBox.hidden = !!state.coupon;
+  const mpNote = document.getElementById("checkout-coupon-mp-note");
+  if (mpNote) mpNote.hidden = !mpWithCoupon();
+}
+
+function applyCoupon(code) {
+  const clean = String(code || "").trim().toUpperCase();
+  if (!COUPON_RE.test(clean)) return false;
+  state.coupon = clean;
+  renderSummary();
+  updateSubmitLabel();
+  return true;
+}
+
+function initCouponUI() {
+  const saved = typeof BA_COUPON !== "undefined" ? BA_COUPON.getCode() : null;
+  if (saved) state.coupon = saved;
+  const input = document.getElementById("checkout-coupon-input");
+  const btn = document.getElementById("checkout-coupon-apply");
+  if (btn && input) {
+    btn.addEventListener("click", () => {
+      if (!applyCoupon(input.value)) showToast("Revisá el código (ej: BA300-ABCDE)");
+    });
+  }
+  const remove = document.getElementById("checkout-coupon-remove");
+  if (remove) remove.addEventListener("click", () => {
+    state.coupon = null;
+    renderSummary();
+    updateSubmitLabel();
+  });
+  const getOne = document.getElementById("checkout-coupon-get");
+  if (getOne) getOne.addEventListener("click", () => BA_COUPON.open("checkout"));
+  document.addEventListener("ba:cupon", e => applyCoupon(e.detail));
 }
 
 // ── Render métodos de envío / pago ───────────────────────────────
@@ -136,7 +194,7 @@ function updateRadioSelection() {
 
 function updateSubmitLabel() {
   const btn = document.getElementById("checkout-submit");
-  btn.textContent = state.payment.id === "mp" ? "Pagar con Mercado Pago" : "Confirmar pedido";
+  btn.textContent = state.payment.id === "mp" && !mpWithCoupon() ? "Pagar con Mercado Pago" : "Confirmar pedido";
 }
 
 // ── Validación ────────────────────────────────────────────────────
@@ -187,7 +245,8 @@ function buildOrderWhatsAppMessage(orderData) {
   return `Hola! Hice un pedido en la web (${orderData.orderNumber}).\n` +
     `Productos: ${itemsList}.\n` +
     `Envío: ${shipping.name}.\n` +
-    `Pago: ${payment.name}.\n` +
+    `Pago: ${payment.name}${orderData.coupon && payment.id === "mp" ? " (pásenme el link con el cupón descontado)" : ""}.\n` +
+    (orderData.coupon ? `Cupón: ${orderData.coupon} (-$${orderData.couponAmount.toLocaleString("es-UY")}).\n` : "") +
     `Total: $${total.toLocaleString("es-UY")} UYU.\n` +
     `Nombre: ${customer.name}. Tel: ${customer.phone}.\n` +
     `Dirección: ${customer.address}, ${customer.city}, ${customer.state}.`;
@@ -222,7 +281,7 @@ async function handleSubmit(e) {
 
   const form = document.getElementById("checkout-form");
   const customer = Object.fromEntries(new FormData(form).entries());
-  const { sub, discountAmount, total } = computeTotals();
+  const { sub, discountAmount, couponAmount, total } = computeTotals();
   const orderNumber = "BA-" + Math.random().toString(36).substring(2, 8).toUpperCase();
 
   const orderData = {
@@ -233,6 +292,8 @@ async function handleSubmit(e) {
     payment: state.payment,
     subtotal: sub,
     discountAmount,
+    coupon: state.coupon,
+    couponAmount,
     total,
     createdAt: new Date().toISOString()
   };
@@ -242,7 +303,7 @@ async function handleSubmit(e) {
   btn.textContent = "Procesando…";
 
   try {
-    if (state.payment.id === "mp") {
+    if (state.payment.id === "mp" && !mpWithCoupon()) {
       const initPoint = await requestMPPreference(orderData);
       window.location.href = initPoint;
       return;
@@ -279,6 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  initCouponUI();
   renderShipping();
   renderPayment();
   renderSummary();

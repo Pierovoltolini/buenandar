@@ -25,7 +25,7 @@
 
   <meta property="og:site_name" content="BuenAndar.uy">
 
-  <link rel="stylesheet" href="style.css?v=20261109d">
+  <link rel="stylesheet" href="style.css?v=20261117a">
 
   <!-- Meta Pixel Code -->
   <script>
@@ -61,8 +61,9 @@
 
         <!-- Nav desktop -->
         <nav class="nav">
-          <a href="#oportunidades">Oportunidades</a>
-          <a href="#products">Productos</a>
+          <a href="#oportunidades">En stock</a>
+          <a href="#lentes">Lentes</a>
+          <a href="#products">Tienda</a>
           <a href="#encargues">Stock y Encargue</a>
           <a href="#instagram">Instagram</a>
           <a href="#contacto">Contacto</a>
@@ -91,13 +92,26 @@
 
   <!-- Mobile Nav -->
   <nav class="mobile-nav" id="mobileNav">
-    <a href="#oportunidades">Oportunidades</a>
-    <a href="#products">Productos</a>
+    <a href="#oportunidades">En stock</a>
+    <a href="#lentes">Lentes</a>
+    <a href="#products">Tienda</a>
+    <a href="#cupon" onclick="BA_COUPON.open('menu'); return false;">🎁 Cupón $300</a>
     <a href="#encargues">Stock y Encargue</a>
     <a href="#instagram">Instagram</a>
     <a href="#contacto">Contacto</a>
   </nav>
 
+
+  <!-- Accesos rápidos por categoría -->
+  <nav class="quick-cats" aria-label="Categorías">
+    <div class="quick-cats-inner">
+      <a href="#oportunidades" class="quick-cat"><span>👟</span>Zapatillas en stock</a>
+      <a href="#lentes" class="quick-cat"><span>🕶️</span>Lentes</a>
+      <a href="#ropa" class="quick-cat"><span>👕</span>Ropa</a>
+      <a href="#products" class="quick-cat"><span>📦</span>Por encargue</a>
+      <button type="button" class="quick-cat quick-cat--gift" onclick="BA_COUPON.open('chips')"><span>🎁</span>$300 de regalo</button>
+    </div>
+  </nav>
 
   <!-- ══════════════════════════════════════════════════════════
        NUEVO INGRESO — Adidas Adizero Dropset
@@ -281,7 +295,18 @@ Zapatillas deportivas y championes en Uruguay | Running, Nike, Adidas, New Balan
   ══════════════════════════════════════════════════════════ -->
   <section id="oportunidades" class="special-section">
     <div class="container">
-      <div class="special-block">
+      <div class="special-block" id="lentes">
+        <div class="section-header">
+          <div>
+            <div class="special-eyebrow">Nuevo · Entrega inmediata</div>
+            <h2 class="section-title">Lentes deportivos<br>Oakley</h2>
+            <p class="section-sub">Protección UV400 · Para correr, bici y todos los días · Una unidad por modelo</p>
+          </div>
+        </div>
+        <div class="products-carousel" id="lentesCarousel"></div>
+      </div>
+
+      <div class="special-block" id="ropa">
         <div class="section-header">
           <div>
             <div class="special-eyebrow">Nuevo ingreso en stock</div>
@@ -664,9 +689,11 @@ Zapatillas deportivas y championes en Uruguay | Running, Nike, Adidas, New Balan
   <!-- ══════════════════════════════════════════════════════════
        SCRIPTS
   ══════════════════════════════════════════════════════════ -->
-  <script src="products.js?v=20261109d"></script>
-  <script src="cart.js?v=20261109d"></script>
-  <script src="script.js?v=20261109d"></script>
+  <script src="products.js?v=20261117a"></script>
+  <script src="cart.js?v=20261117a"></script>
+  <script src="script.js?v=20261117a"></script>
+  <script src="coupon.js?v=20261117a"></script>
+  <script>BA_COUPON.init({ auto: true });</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

@@ -2780,3 +2780,200 @@ ul { list-style: none; }
 }
 .special-section .section-title { text-transform: uppercase; }
 .price-fire { font-size: 0.9em; margin-left: 2px; }
+
+/* ══════════════════════════════════════════════════════════════
+   CUPÓN DE BIENVENIDA $300 · barra, ventana y botón flotante
+══════════════════════════════════════════════════════════════ */
+:root { --coupon-bar-h: 38px; }
+
+.coupon-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1001;
+  height: var(--coupon-bar-h);
+  width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 0 14px;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  line-height: 1.2;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  cursor: pointer;
+}
+.coupon-bar strong { color: var(--lime); font-weight: 800; }
+.coupon-bar-cta {
+  background: var(--lime); color: var(--black);
+  font-weight: 800; font-size: 0.78rem;
+  padding: 4px 10px; border-radius: 999px;
+  animation: couponPulse 2.4s ease-in-out infinite;
+}
+@keyframes couponPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+
+body:has(.coupon-bar) { padding-top: var(--coupon-bar-h); }
+body:has(.coupon-bar) #header { top: var(--coupon-bar-h); }
+body:has(.coupon-bar) .mobile-nav { top: calc(64px + var(--coupon-bar-h)); }
+
+@media (max-width: 600px) {
+  .coupon-bar { font-size: 0.78rem; gap: 6px; }
+  .coupon-bar-cta { display: none; }
+}
+
+/* Botón flotante */
+.coupon-pill {
+  position: fixed;
+  left: 16px; bottom: 18px;
+  z-index: 1500;
+  background: var(--lime);
+  color: var(--black);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.98rem;
+  letter-spacing: 0.02em;
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+  animation: couponWiggle 6s ease-in-out infinite;
+}
+@keyframes couponWiggle {
+  0%, 90%, 100% { transform: rotate(0); }
+  92% { transform: rotate(-6deg); } 94% { transform: rotate(6deg); } 96% { transform: rotate(-3deg); }
+}
+body.coupon-lock .coupon-pill { display: none; }
+
+/* Ventana */
+body.coupon-lock { overflow: hidden; }
+.coupon-overlay {
+  position: fixed; inset: 0;
+  z-index: 3000;
+  background: rgba(10,10,10,0.65);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.coupon-overlay.open { opacity: 1; pointer-events: auto; }
+.coupon-modal {
+  position: relative;
+  width: 100%; max-width: 400px;
+  max-height: calc(100vh - 32px); overflow-y: auto;
+  background: var(--white);
+  border-radius: 18px;
+  padding: 28px 24px 22px;
+  text-align: center;
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+.coupon-overlay.open .coupon-modal { transform: none; }
+.coupon-close {
+  position: absolute; top: 10px; right: 12px;
+  width: 34px; height: 34px; border-radius: 50%;
+  font-size: 1rem; color: var(--gray-600);
+}
+.coupon-close:hover { background: var(--gray-100); }
+.coupon-ticket {
+  display: inline-flex; flex-direction: column; align-items: center;
+  background: var(--lime);
+  border: 2px dashed var(--black);
+  border-radius: 12px;
+  padding: 10px 26px 8px;
+  margin-bottom: 14px;
+  transform: rotate(-2deg);
+}
+.coupon-ticket-amount { font-family: var(--font-display); font-weight: 900; font-size: 2.6rem; line-height: 1; }
+.coupon-ticket-text { font-weight: 800; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.coupon-title { font-family: var(--font-display); font-weight: 900; font-size: 1.6rem; text-transform: uppercase; line-height: 1.05; margin-bottom: 8px; }
+.coupon-sub { color: var(--gray-600); font-size: 0.95rem; line-height: 1.45; margin-bottom: 16px; }
+.coupon-field { display: block; text-align: left; margin-bottom: 10px; }
+.coupon-field span { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+.coupon-field input {
+  width: 100%;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 1rem; font-family: var(--font-body);
+}
+.coupon-field input:focus { outline: none; border-color: var(--black); }
+.coupon-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.coupon-error { color: #d93025; font-size: 0.85rem; min-height: 1.1em; margin: 2px 0 8px; }
+.coupon-submit {
+  display: block; width: 100%;
+  background: var(--black); color: var(--lime);
+  font-family: var(--font-display); font-weight: 900; font-size: 1.15rem;
+  text-transform: uppercase; letter-spacing: 0.03em;
+  padding: 15px 16px; border-radius: 12px;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+.coupon-submit:hover { transform: translateY(-1px); }
+.coupon-submit:disabled { opacity: 0.6; }
+.coupon-wa { background: #25D366; color: var(--white); margin-top: 14px; }
+.coupon-legal { font-size: 0.72rem; color: var(--gray-400); margin-top: 10px; line-height: 1.35; }
+.coupon-check {
+  width: 54px; height: 54px; margin: 0 auto 12px;
+  border-radius: 50%; background: var(--lime);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; font-weight: 900;
+}
+.coupon-code {
+  display: block; width: 100%;
+  border: 2px dashed var(--black); border-radius: 12px;
+  background: var(--gray-100);
+  font-family: var(--font-display); font-weight: 900; font-size: 1.9rem; letter-spacing: 0.06em;
+  padding: 12px;
+}
+.coupon-copy-hint { display: block; font-size: 0.8rem; color: var(--gray-600); margin-top: 6px; }
+.coupon-secondary { margin-top: 10px; font-size: 0.9rem; color: var(--gray-600); text-decoration: underline; }
+
+/* Checkout */
+.checkout-coupon-box { margin-top: 16px; padding: 14px; border: 1.5px dashed var(--gray-400); border-radius: 10px; }
+.checkout-coupon-box label { display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 8px; }
+.checkout-coupon-input-row { display: flex; gap: 8px; }
+.checkout-coupon-input-row input { flex: 1; min-width: 0; border: 1.5px solid var(--gray-200); border-radius: 8px; padding: 10px 12px; font-size: 0.95rem; text-transform: uppercase; }
+.checkout-coupon-input-row button { background: var(--black); color: var(--white); border-radius: 8px; padding: 0 16px; font-weight: 700; }
+.checkout-coupon-get { margin-top: 10px; font-size: 0.85rem; font-weight: 700; color: var(--black); text-decoration: underline; }
+.checkout-coupon-mp-note { margin-top: 12px; font-size: 0.82rem; color: var(--gray-600); background: var(--gray-100); padding: 10px 12px; border-radius: 8px; }
+.coupon-remove { font-size: 0.75rem; color: var(--gray-600); text-decoration: underline; margin-left: 4px; }
+
+/* ══════════════════════════════════════════════════════════════
+   ACCESOS RÁPIDOS POR CATEGORÍA (chips debajo del header)
+══════════════════════════════════════════════════════════════ */
+.quick-cats {
+  position: sticky;
+  top: 64px;
+  z-index: 900;
+  margin-top: 64px;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+}
+body:has(.coupon-bar) .quick-cats { top: calc(64px + var(--coupon-bar-h)); }
+.quick-cats + .new-arrival { margin-top: 0; }
+.quick-cats-inner {
+  display: flex; gap: 8px;
+  overflow-x: auto; scrollbar-width: none;
+  padding: 10px 16px;
+  max-width: 1280px; margin: 0 auto;
+}
+.quick-cats-inner::-webkit-scrollbar { display: none; }
+.quick-cat {
+  flex: 0 0 auto;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--gray-100);
+  color: var(--black);
+  font-weight: 700; font-size: 0.88rem;
+  text-decoration: none; white-space: nowrap;
+  transition: background var(--transition);
+}
+.quick-cat:hover { background: var(--gray-200); }
+.quick-cat--gift { background: var(--lime); }
+.quick-cat--gift:hover { background: var(--lime-dark); }
+
+/* Anclas: que el título no quede tapado por header + chips */
+#oportunidades, #lentes, #ropa, #products, #encargues, #instagram, #contacto { scroll-margin-top: 130px; }
+body:has(.coupon-bar) :is(#oportunidades, #lentes, #ropa, #products, #encargues, #instagram, #contacto) { scroll-margin-top: 168px; }
+
+/* Etiqueta de última unidad más visible */
+.product-low-stock { color: #d93025; font-weight: 800; }
