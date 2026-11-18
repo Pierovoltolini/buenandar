@@ -1104,7 +1104,7 @@ const products = [
     transferPrice: 2100,
     compareAtPrice: null,
     images: ["img/lentes-oakley-119-gris-claro-rosa.webp"],
-    sizes: [{ size: "Único", stock: 1 }],
+    sizes: [{ size: "Único", stock: 0 }],
     description: "Armazón gris claro, lente rosa espejado. Lentes deportivos de primera línea con protección UV400, ideales para correr, andar en bici y el día a día.",
     features: ["Entrega inmediata", "UV400", "Deportivos"],
     purchaseType: "stock",
